@@ -12,13 +12,20 @@ const CHARACTERS = [
     },
     live2d: null,
     fallback: {
-      eyeLeft: "◕",
-      eyeRight: "◕",
-      mouth: "ڡ",
+      variant: "portrait-zundamon",
+      eyeLeft: "",
+      eyeRight: "",
+      mouth: "",
       accent: "#74d44c",
       mouthColor: "#f6c15b",
       nameColor: "#74d44c",
       faceScale: 1.03,
+      skinColor: "#f9f4eb",
+      hairColor: "#67c83f",
+      coatColor: "#eff7d3",
+      shirtColor: "#ffffff",
+      eyeColor: "#4f2c63",
+      glowColor: "rgba(116, 212, 76, 0.24)",
     },
     reaction: "その切り方でいいのだ。次へ進むのだ。",
     scenes: [
@@ -53,13 +60,20 @@ const CHARACTERS = [
     },
     live2d: null,
     fallback: {
-      eyeLeft: "◆",
-      eyeRight: "◆",
-      mouth: "﹂",
+      variant: "portrait-kurose",
+      eyeLeft: "",
+      eyeRight: "",
+      mouth: "",
       accent: "#4ec2a6",
       mouthColor: "#9ce6c3",
       nameColor: "#4ec2a6",
       faceScale: 1,
+      skinColor: "#e0bc9d",
+      hairColor: "#24353b",
+      coatColor: "#183133",
+      shirtColor: "#e1ece8",
+      eyeColor: "#d7fff5",
+      glowColor: "rgba(78, 194, 166, 0.24)",
     },
     reaction: "その見方で合ってる。続けようぜ。",
     scenes: [
@@ -94,13 +108,20 @@ const CHARACTERS = [
     },
     live2d: null,
     fallback: {
-      eyeLeft: "◡",
-      eyeRight: "◡",
-      mouth: "ᴗ",
+      variant: "portrait-soft",
+      eyeLeft: "",
+      eyeRight: "",
+      mouth: "",
       accent: "#ff9d76",
       mouthColor: "#ffd08a",
       nameColor: "#ff9d76",
       faceScale: 1,
+      skinColor: "#f4d3c0",
+      hairColor: "#ffb58e",
+      coatColor: "#fff0dd",
+      shirtColor: "#ffffff",
+      eyeColor: "#915d52",
+      glowColor: "rgba(255, 157, 118, 0.22)",
     },
     reaction: "大丈夫だよ。順に見ていこう。",
     scenes: [
@@ -508,6 +529,69 @@ function renderFallbackCharacter() {
               <div class="fb-shirt"></div>
               <div class="fb-lapel fb-lapel-left"></div>
               <div class="fb-lapel fb-lapel-right"></div>
+            </div>
+          </div>
+          <div class="fb-name">${currentCharacter.name}</div>
+        </div>
+      `
+      : fallback.variant === "portrait-soft"
+      ? `
+        <div class="fb-portrait-shell">
+          <div class="fb-glow"></div>
+          <div class="fb-portrait">
+            <div class="fb-head">
+              <div class="fb-hair-back"></div>
+              <div class="fb-faceplate">
+                <div class="fb-brows">
+                  <span class="fb-brow"></span>
+                  <span class="fb-brow"></span>
+                </div>
+                <div class="fb-eyes">
+                  <span class="fb-eye"></span>
+                  <span class="fb-eye"></span>
+                </div>
+                <div class="fb-mouth"></div>
+              </div>
+              <div class="fb-hair-front"></div>
+            </div>
+            <div class="fb-neck"></div>
+            <div class="fb-body">
+              <div class="fb-shirt"></div>
+              <div class="fb-lapel fb-lapel-left"></div>
+              <div class="fb-lapel fb-lapel-right"></div>
+            </div>
+          </div>
+          <div class="fb-name">${currentCharacter.name}</div>
+        </div>
+      `
+      : fallback.variant === "portrait-zundamon"
+      ? `
+        <div class="fb-zunda-shell">
+          <div class="fb-glow"></div>
+          <div class="fb-zunda-portrait">
+            <div class="fb-zunda-head">
+              <div class="fb-zunda-ear fb-zunda-ear-left"></div>
+              <div class="fb-zunda-ear fb-zunda-ear-right"></div>
+              <div class="fb-zunda-hair"></div>
+              <div class="fb-zunda-face">
+                <div class="fb-zunda-brows">
+                  <span class="fb-zunda-brow"></span>
+                  <span class="fb-zunda-brow"></span>
+                </div>
+                <div class="fb-zunda-eyes">
+                  <span class="fb-zunda-eye"></span>
+                  <span class="fb-zunda-eye"></span>
+                </div>
+                <div class="fb-zunda-cheeks">
+                  <span class="fb-zunda-cheek"></span>
+                  <span class="fb-zunda-cheek"></span>
+                </div>
+                <div class="fb-zunda-mouth"></div>
+              </div>
+            </div>
+            <div class="fb-zunda-body">
+              <div class="fb-zunda-collar"></div>
+              <div class="fb-zunda-bib"></div>
             </div>
           </div>
           <div class="fb-name">${currentCharacter.name}</div>
