@@ -1,33 +1,26 @@
 const CHARACTERS = [
   {
-    id: "kurose",
-    name: "黒瀬",
-    role: "先輩エンジニア",
+    id: "zundamon",
+    name: "ずんだもん",
+    role: "マスコット相棒",
     live2d: null,
     fallback: {
-      variant: "portrait-kurose",
-      eyeLeft: "",
-      eyeRight: "",
-      mouth: "",
-      accent: "#ffa657",
-      mouthColor: "#ffa657",
-      nameColor: "#ffa657",
-      faceScale: 1.04,
-      skinColor: "#e6c2a8",
-      hairColor: "#11161f",
-      coatColor: "#1a2230",
-      shirtColor: "#d7dde6",
-      eyeColor: "#f4f7fb",
-      glowColor: "rgba(255, 166, 87, 0.22)",
+      eyeLeft: "◕",
+      eyeRight: "◕",
+      mouth: "ڡ",
+      accent: "#74d44c",
+      mouthColor: "#f6c15b",
+      nameColor: "#74d44c",
+      faceScale: 1.03,
     },
-    reaction: "状況から出して。最短で切る。",
+    reaction: "その切り方でいいのだ。次へ進むのだ。",
     scenes: [
       [
         { role: "user", content: "このプロジェクト、どんな感じ？" },
         {
           role: "assistant",
           content:
-            "## OshiClaw の狙い\n\n- 開発支援とキャラ体験を同じ UI に乗せる\n- ローカルでは実 LLM、Pages では静的 demo を見せる\n- public に出しても説明しやすいクール寄りの世界観に寄せている\n\nまずは使い道が一目で分かる形にしている。",
+            "## OshiClaw の狙い\n\n- 公式無料キャラやオリジナルキャラを混ぜて試せる\n- ローカルでは実 LLM、Pages では静的 demo を見せる\n- まずは画像素材や fallback から増やし、あとで Live2D に上げる\n\n気軽に触って、気に入った枠を育てる方針なのだ。",
         },
       ],
       [
@@ -35,7 +28,7 @@ const CHARACTERS = [
         {
           role: "assistant",
           content:
-            "次ならこの順だ。\n\n1. 実 Live2D モデルを増やす\n2. 会話 export を入れる\n3. Markdown の table を足す\n\n優先度を守れば、公開後も崩れない。",
+            "次ならこの順なのだ。\n\n1. 公式画像素材を増やす\n2. 実 Live2D モデルを追加する\n3. experimental 枠を分けて管理する\n\n土台を分けておくと増やしやすいのだ。",
         },
       ],
     ],

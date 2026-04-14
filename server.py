@@ -22,7 +22,7 @@ app = FastAPI()
 
 BASE_DIR = Path(__file__).parent
 CHARACTERS_DIR = BASE_DIR / "characters"
-DEFAULT_CHARACTER_ID = "kurose"
+DEFAULT_CHARACTER_ID = "zundamon"
 
 # コードコンテキスト（起動時に1回読み込み）
 CODE_CONTEXT = load_context(str(BASE_DIR))
@@ -50,6 +50,16 @@ def _load_character_file(path: Path) -> tuple[str, dict]:
     character.setdefault("reset_message", "会話をリセットしたよ。")
     character.setdefault("input_placeholder", "何か聞いて！")
     character.setdefault("hit_reactions", {})
+    catalog = character.get("catalog") or {}
+    if not isinstance(catalog, dict):
+        catalog = {}
+    catalog["group_label"] = str(catalog.get("group_label", "")).strip()
+    catalog["visual_label"] = str(catalog.get("visual_label", "")).strip()
+    catalog["source_label"] = str(catalog.get("source_label", "")).strip()
+    catalog["source_url"] = str(catalog.get("source_url", "")).strip()
+    catalog["license_note"] = str(catalog.get("license_note", "")).strip()
+    catalog["note"] = str(catalog.get("note", "")).strip()
+    character["catalog"] = catalog
     live2d = character.get("live2d") or {}
     if not isinstance(live2d, dict):
         live2d = {}
@@ -122,6 +132,7 @@ def _serialize_character(character: dict) -> dict:
         "reset_message": character["reset_message"],
         "input_placeholder": character["input_placeholder"],
         "hit_reactions": character.get("hit_reactions", {}),
+        "catalog": character.get("catalog", {}),
         "live2d": character.get("live2d", {}),
         "fallback_appearance": character.get("fallback_appearance", {}),
         "tts": character.get("tts", {}),
@@ -205,6 +216,7 @@ class CharacterInfo(BaseModel):
     reset_message: str
     input_placeholder: str
     hit_reactions: dict[str, str]
+    catalog: dict
     live2d: dict
     fallback_appearance: dict
     tts: dict

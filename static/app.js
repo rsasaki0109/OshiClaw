@@ -33,13 +33,29 @@ const DEFAULT_TTS_CONFIG = {
   rate: 1,
   pitch: 1,
 };
+const DEFAULT_CHARACTER_CATALOG = {
+  group_label: "",
+  visual_label: "",
+  source_label: "",
+  source_url: "",
+  license_note: "",
+  note: "",
+};
 const DEFAULT_CHARACTER = {
-  id: "kurose",
-  name: "黒瀬",
-  role_label: "先輩エンジニア",
-  intro_message: "状況を出して。最短で切り分ける。",
-  reset_message: "会話を切り替えた。論点からやり直そう。",
-  input_placeholder: "ログ、コード、エラーを貼って",
+  id: "zundamon",
+  name: "ずんだもん",
+  role_label: "マスコット相棒",
+  intro_message: "今日は何をやるのだ？ 進め方を一緒に決めるのだ。",
+  reset_message: "会話を切り替えたのだ。最初から整理するのだ。",
+  input_placeholder: "何をやるのだ？",
+  catalog: {
+    group_label: "公式無料",
+    visual_label: "画像素材",
+    source_label: "東北ずん子・ずんだもんPJ",
+    source_url: "https://zunko.jp/",
+    license_note: "非商用利用しやすい。商用時は公式ガイドライン確認。",
+    note: "Live2D は公式データを入手できたら切り替える。",
+  },
   live2d: {
     model_url: "",
     expressions: {
@@ -53,35 +69,29 @@ const DEFAULT_CHARACTER = {
     },
   },
   fallback_appearance: {
-    variant: "portrait-kurose",
-    eye_left: "",
-    eye_right: "",
-    mouth: "",
-    accent_color: "#ffa657",
-    mouth_color: "#ffa657",
-    name_color: "#ffa657",
-    face_scale: 1.04,
-    skin_color: "#e6c2a8",
-    hair_color: "#11161f",
-    coat_color: "#1a2230",
-    shirt_color: "#d7dde6",
-    eye_color: "#f4f7fb",
-    glow_color: "rgba(255, 166, 87, 0.22)",
+    variant: "simple",
+    eye_left: "◕",
+    eye_right: "◕",
+    mouth: "ڡ",
+    accent_color: "#74d44c",
+    mouth_color: "#f6c15b",
+    name_color: "#74d44c",
+    face_scale: 1.03,
   },
   tts: {
     preferred_lang: "ja-JP",
     voice_keywords: [
-      "otoya",
-      "ichiro",
-      "daichi",
+      "kyoko",
+      "haruka",
+      "sayaka",
       "google 日本語",
     ],
-    rate: 0.93,
-    pitch: 0.8,
+    rate: 1.08,
+    pitch: 1.12,
   },
   hit_reactions: {
-    Head: "その観点でいい。続きを見よう。",
-    Body: "ログを見れば早い。次に進むぞ。",
+    Head: "その方針、いい感じなのだ。次へ進むのだ。",
+    Body: "まず小さく試すのだ。ログも見るのだ。",
   },
 };
 const HIT_REACTION_EXPRESSIONS = {
@@ -181,6 +191,13 @@ function buildCharacterTtsConfig(character) {
   };
 }
 
+function buildCharacterCatalog(character) {
+  return {
+    ...DEFAULT_CHARACTER_CATALOG,
+    ...(character.catalog || {}),
+  };
+}
+
 function getCurrentLive2DConfig() {
   return buildCharacterLive2DConfig(currentCharacter);
 }
@@ -243,10 +260,33 @@ function getCurrentTtsConfig() {
   return buildCharacterTtsConfig(currentCharacter);
 }
 
+function syncCharacterMeta() {
+  const catalog = buildCharacterCatalog(currentCharacter);
+
+  characterGroupBadgeEl.textContent = catalog.group_label || "未分類";
+  characterVisualBadgeEl.textContent = catalog.visual_label || "fallback";
+
+  if (catalog.source_url && catalog.source_label) {
+    characterSourceLinkEl.href = catalog.source_url;
+    characterSourceLinkEl.textContent = catalog.source_label;
+    characterSourceLinkEl.hidden = false;
+  } else {
+    characterSourceLinkEl.hidden = true;
+    characterSourceLinkEl.removeAttribute("href");
+    characterSourceLinkEl.textContent = "";
+  }
+
+  characterLicenseNoteEl.textContent =
+    catalog.license_note || "利用条件は各キャラクター規約を確認。";
+  characterNoteEl.textContent = catalog.note || "";
+  characterNoteEl.hidden = !characterNoteEl.textContent;
+}
+
 function applyCharacter(character) {
   currentCharacter = {
     ...DEFAULT_CHARACTER,
     ...character,
+    catalog: buildCharacterCatalog(character),
     live2d: buildCharacterLive2DConfig(character),
     fallback_appearance: buildFallbackAppearance(character),
     tts: buildCharacterTtsConfig(character),
@@ -260,6 +300,7 @@ function applyCharacter(character) {
   document.querySelector(".char-role").textContent = currentCharacter.role_label;
   document.title = `OshiClaw - ${currentCharacter.name}`;
   inputEl.placeholder = currentCharacter.input_placeholder;
+  syncCharacterMeta();
 
   if (supportsSpeechSynthesis()) {
     populateVoiceSelect(availableVoices);
@@ -642,6 +683,11 @@ const modelSelectEl = document.getElementById("model-select");
 const audioControlsEl = document.getElementById("audio-controls");
 const ttsToggleBtn = document.getElementById("tts-toggle");
 const ttsVoiceSelectEl = document.getElementById("tts-voice-select");
+const characterGroupBadgeEl = document.getElementById("character-group-badge");
+const characterVisualBadgeEl = document.getElementById("character-visual-badge");
+const characterSourceLinkEl = document.getElementById("character-source-link");
+const characterLicenseNoteEl = document.getElementById("character-license-note");
+const characterNoteEl = document.getElementById("character-note");
 const requestFeedbackEl = document.getElementById("request-feedback");
 const requestFeedbackTextEl = document.getElementById("request-feedback-text");
 const retryBtn = document.getElementById("retry-btn");

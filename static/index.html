@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>OshiClaw - 黒瀬</title>
+  <title>OshiClaw - ずんだもん</title>
   <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
@@ -17,8 +17,8 @@
     <!-- 右: チャットパネル -->
     <div id="chat-area">
       <div id="chat-header">
-        <span class="char-name">黒瀬</span>
-        <span class="char-role">先輩エンジニア</span>
+        <span class="char-name">ずんだもん</span>
+        <span class="char-role">マスコット相棒</span>
         <select id="character-select" aria-label="キャラクター選択"></select>
         <select id="model-select" aria-label="モデル選択"></select>
         <div id="audio-controls" hidden>
@@ -27,9 +27,16 @@
         </div>
         <button id="reset-btn" title="会話リセット">&#x21bb;</button>
       </div>
+      <div id="character-meta">
+        <span id="character-group-badge" class="character-meta-badge">公式無料</span>
+        <span id="character-visual-badge" class="character-meta-badge">画像素材</span>
+        <a id="character-source-link" href="https://zunko.jp/" target="_blank" rel="noopener noreferrer">東北ずん子・ずんだもんPJ</a>
+        <span id="character-license-note">非商用利用しやすい。商用時は公式ガイドライン確認。</span>
+        <span id="character-note">Live2D は公式データを入手できたら切り替える。</span>
+      </div>
       <div id="chat-messages"></div>
       <div id="chat-input-area">
-        <textarea id="chat-input" placeholder="ログ、コード、エラーを貼って" rows="1"></textarea>
+        <textarea id="chat-input" placeholder="何をやるのだ？" rows="1"></textarea>
         <div id="input-actions">
           <button id="stop-btn" type="button" disabled>停止</button>
           <button id="send-btn">送信</button>

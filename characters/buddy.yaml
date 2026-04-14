@@ -6,6 +6,13 @@ style: "一緒に試しながら進める"
 intro_message: "よし、今日はどこ攻める？一緒に片づけよう。"
 reset_message: "会話を切り替えたよ。次のテーマいこう。"
 input_placeholder: "やりたいことを書いて"
+catalog:
+  group_label: "オリジナル"
+  visual_label: "fallback"
+  source_label: "OshiClaw オリジナル"
+  source_url: ""
+  license_note: "この repo 内のオリジナルキャラ。"
+  note: "会話テンポ重視の相棒枠。"
 live2d:
   model_url: ""
 fallback_appearance:
