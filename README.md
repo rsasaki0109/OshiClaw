@@ -3,6 +3,15 @@
 Live2D キャラとペアプロ風に会話できるローカル Web アプリです。  
 FastAPI でチャット API を出し、フロントは素の HTML/CSS/JS で動きます。
 
+![OshiClaw demo preview](./media/readme/oshiclaw-demo.gif)
+
+短いデモ動画:
+
+- [WEBM](./media/readme/oshiclaw-demo.webm)
+- [MP4](./media/readme/oshiclaw-demo.mp4)
+
+再配布しにくいモデルがある前提でも、README から挙動をすぐ確認できるようにしています。
+
 ## できること
 
 - Live2D キャラ表示。モデルが使えないキャラは fallback 見た目で表示
@@ -50,7 +59,7 @@ FastAPI でチャット API を出し、フロントは素の HTML/CSS/JS で動
 - `ゆっくり霊夢`
   - experimental / 自作 fallback
 
-出典と利用メモは [CHARACTERS.md](/media/autoware/aa/ai_coding_ws/oshi-chat/CHARACTERS.md) にまとめています。
+出典と利用メモは [CHARACTERS.md](./CHARACTERS.md) にまとめています。
 
 ## 必要環境
 
@@ -150,3 +159,4 @@ OshiClaw/
 - `OPENAI_API_KEY` が未設定で `OPENAI_BASE_URL` も未設定なら、ローカル Ollama に自動フォールバックします
 - `MODEL` と `PORT` は環境変数で切り替えられます
 - キャラ追加は `characters/*.yaml` を増やせば対応できます
+- README 用デモ動画は `python3 scripts/record_demo.py` で撮り直せます
