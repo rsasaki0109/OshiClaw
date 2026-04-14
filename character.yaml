@@ -11,14 +11,20 @@ catalog:
 live2d:
   model_url: ""
 fallback_appearance:
-  variant: "simple"
-  eye_left: "◕"
-  eye_right: "◕"
-  mouth: "ڡ"
+  variant: "portrait-zundamon"
+  eye_left: ""
+  eye_right: ""
+  mouth: ""
   accent_color: "#74d44c"
   mouth_color: "#f6c15b"
   name_color: "#74d44c"
   face_scale: 1.03
+  skin_color: "#f9f4eb"
+  hair_color: "#67c83f"
+  coat_color: "#eff7d3"
+  shirt_color: "#ffffff"
+  eye_color: "#4f2c63"
+  glow_color: "rgba(116, 212, 76, 0.24)"
 tts:
   preferred_lang: "ja-JP"
   voice_keywords:

@@ -69,14 +69,20 @@ const DEFAULT_CHARACTER = {
     },
   },
   fallback_appearance: {
-    variant: "simple",
-    eye_left: "◕",
-    eye_right: "◕",
-    mouth: "ڡ",
+    variant: "portrait-zundamon",
+    eye_left: "",
+    eye_right: "",
+    mouth: "",
     accent_color: "#74d44c",
     mouth_color: "#f6c15b",
     name_color: "#74d44c",
     face_scale: 1.03,
+    skin_color: "#f9f4eb",
+    hair_color: "#67c83f",
+    coat_color: "#eff7d3",
+    shirt_color: "#ffffff",
+    eye_color: "#4f2c63",
+    glow_color: "rgba(116, 212, 76, 0.24)",
   },
   tts: {
     preferred_lang: "ja-JP",
@@ -248,9 +254,84 @@ function renderPortraitKuroseFallbackMarkup() {
   `;
 }
 
+function renderPortraitSoftFallbackMarkup() {
+  return `
+    <div class="fb-portrait-shell">
+      <div class="fb-glow"></div>
+      <div class="fb-portrait">
+        <div class="fb-head">
+          <div class="fb-hair-back"></div>
+          <div class="fb-faceplate">
+            <div class="fb-brows">
+              <span class="fb-brow"></span>
+              <span class="fb-brow"></span>
+            </div>
+            <div class="fb-eyes">
+              <span class="fb-eye"></span>
+              <span class="fb-eye"></span>
+            </div>
+            <div class="fb-mouth"></div>
+          </div>
+          <div class="fb-hair-front"></div>
+        </div>
+        <div class="fb-neck"></div>
+        <div class="fb-body">
+          <div class="fb-shirt"></div>
+          <div class="fb-lapel fb-lapel-left"></div>
+          <div class="fb-lapel fb-lapel-right"></div>
+        </div>
+      </div>
+      <div class="fb-name">${currentCharacter.name}</div>
+    </div>
+  `;
+}
+
+function renderPortraitZundamonFallbackMarkup() {
+  return `
+    <div class="fb-zunda-shell">
+      <div class="fb-glow"></div>
+      <div class="fb-zunda-portrait">
+        <div class="fb-zunda-head">
+          <div class="fb-zunda-ear fb-zunda-ear-left"></div>
+          <div class="fb-zunda-ear fb-zunda-ear-right"></div>
+          <div class="fb-zunda-hair"></div>
+          <div class="fb-zunda-face">
+            <div class="fb-zunda-brows">
+              <span class="fb-zunda-brow"></span>
+              <span class="fb-zunda-brow"></span>
+            </div>
+            <div class="fb-zunda-eyes">
+              <span class="fb-zunda-eye"></span>
+              <span class="fb-zunda-eye"></span>
+            </div>
+            <div class="fb-zunda-cheeks">
+              <span class="fb-zunda-cheek"></span>
+              <span class="fb-zunda-cheek"></span>
+            </div>
+            <div class="fb-zunda-mouth"></div>
+          </div>
+        </div>
+        <div class="fb-zunda-body">
+          <div class="fb-zunda-collar"></div>
+          <div class="fb-zunda-bib"></div>
+        </div>
+      </div>
+      <div class="fb-name">${currentCharacter.name}</div>
+    </div>
+  `;
+}
+
 function renderFallbackMarkup(fallbackAppearance) {
   if (fallbackAppearance.variant === "portrait-kurose") {
     return renderPortraitKuroseFallbackMarkup();
+  }
+
+  if (fallbackAppearance.variant === "portrait-soft") {
+    return renderPortraitSoftFallbackMarkup();
+  }
+
+  if (fallbackAppearance.variant === "portrait-zundamon") {
+    return renderPortraitZundamonFallbackMarkup();
   }
 
   return renderSimpleFallbackMarkup(fallbackAppearance);

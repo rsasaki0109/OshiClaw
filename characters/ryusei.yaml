@@ -16,13 +16,20 @@ catalog:
 live2d:
   model_url: ""
 fallback_appearance:
-  eye_left: "▣"
-  eye_right: "▣"
-  mouth: "─"
+  variant: "portrait-kurose"
+  eye_left: ""
+  eye_right: ""
+  mouth: ""
   accent_color: "#54b7ff"
   mouth_color: "#8ce0ff"
   name_color: "#54b7ff"
   face_scale: 0.99
+  skin_color: "#e3bea4"
+  hair_color: "#162235"
+  coat_color: "#14263e"
+  shirt_color: "#dbe8f4"
+  eye_color: "#ebf7ff"
+  glow_color: "rgba(84, 183, 255, 0.22)"
 tts:
   preferred_lang: "ja-JP"
   voice_keywords:

@@ -449,6 +449,419 @@ body {
   animation: fb-eye-glow 0.8s ease-in-out infinite alternate;
 }
 
+#fallback-char[data-variant="portrait-soft"] .fb-portrait-shell {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  width: min(100%, 420px);
+  transform: translateY(26px);
+}
+
+#fallback-char[data-variant="portrait-soft"] .fb-glow {
+  position: absolute;
+  inset: 54px 68px 110px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at center, var(--fb-glow-color) 0%, rgba(255, 255, 255, 0) 72%);
+  filter: blur(22px);
+}
+
+#fallback-char[data-variant="portrait-soft"] .fb-portrait {
+  position: relative;
+  width: 304px;
+  height: 414px;
+  animation: fb-kurose-float 4.6s ease-in-out infinite;
+}
+
+#fallback-char[data-variant="portrait-soft"] .fb-head {
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  width: 194px;
+  height: 220px;
+  transform: translateX(-50%);
+}
+
+#fallback-char[data-variant="portrait-soft"] .fb-hair-back,
+#fallback-char[data-variant="portrait-soft"] .fb-hair-front,
+#fallback-char[data-variant="portrait-soft"] .fb-faceplate,
+#fallback-char[data-variant="portrait-soft"] .fb-neck,
+#fallback-char[data-variant="portrait-soft"] .fb-body,
+#fallback-char[data-variant="portrait-soft"] .fb-shirt,
+#fallback-char[data-variant="portrait-soft"] .fb-lapel,
+#fallback-char[data-variant="portrait-soft"] .fb-brow,
+#fallback-char[data-variant="portrait-soft"] .fb-eye,
+#fallback-char[data-variant="portrait-soft"] .fb-mouth {
+  position: absolute;
+}
+
+#fallback-char[data-variant="portrait-soft"] .fb-hair-back {
+  inset: 0;
+  border-radius: 46% 46% 42% 42%;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.12), transparent 22%),
+    linear-gradient(180deg, color-mix(in srgb, var(--fb-hair-color) 72%, white 28%) 0%, var(--fb-hair-color) 52%, color-mix(in srgb, var(--fb-hair-color) 82%, #8a6c58 18%) 100%);
+}
+
+#fallback-char[data-variant="portrait-soft"] .fb-faceplate {
+  left: 26px;
+  right: 26px;
+  top: 30px;
+  bottom: 14px;
+  border-radius: 46% 46% 50% 50%;
+  background:
+    radial-gradient(circle at 50% 16%, rgba(255, 255, 255, 0.16), transparent 24%),
+    linear-gradient(180deg, color-mix(in srgb, var(--fb-skin-color) 84%, white 16%) 0%, var(--fb-skin-color) 62%, color-mix(in srgb, var(--fb-skin-color) 80%, #c8a58d 20%) 100%);
+  overflow: hidden;
+}
+
+#fallback-char[data-variant="portrait-soft"] .fb-hair-front {
+  left: 12px;
+  right: 12px;
+  top: -2px;
+  height: 120px;
+  border-radius: 48% 48% 38% 38%;
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--fb-hair-color) 68%, white 32%) 0%, var(--fb-hair-color) 44%, color-mix(in srgb, var(--fb-hair-color) 74%, #7c594d 26%) 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 68%, 82% 58%, 66% 82%, 51% 60%, 35% 86%, 20% 62%, 0 74%);
+}
+
+#fallback-char[data-variant="portrait-soft"] .fb-brows {
+  position: absolute;
+  top: 72px;
+  left: 50%;
+  display: flex;
+  gap: 30px;
+  transform: translateX(-50%);
+}
+
+#fallback-char[data-variant="portrait-soft"] .fb-brow {
+  width: 36px;
+  height: 7px;
+  border-radius: 999px;
+  background: rgba(82, 58, 50, 0.45);
+}
+
+#fallback-char[data-variant="portrait-soft"] .fb-brow:first-child {
+  transform: rotate(-8deg);
+}
+
+#fallback-char[data-variant="portrait-soft"] .fb-brow:last-child {
+  transform: rotate(8deg);
+}
+
+#fallback-char[data-variant="portrait-soft"] .fb-eyes {
+  position: absolute;
+  top: 98px;
+  left: 50%;
+  display: flex;
+  gap: 24px;
+  transform: translateX(-50%);
+}
+
+#fallback-char[data-variant="portrait-soft"] .fb-eye {
+  width: 28px;
+  height: 14px;
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 50% 36%, rgba(255, 255, 255, 0.9), transparent 34%),
+    var(--fb-eye-color);
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.12);
+}
+
+#fallback-char[data-variant="portrait-soft"] .fb-mouth {
+  left: 50%;
+  bottom: 44px;
+  width: 24px;
+  height: 6px;
+  transform: translateX(-50%);
+  border-radius: 0 0 999px 999px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.24), var(--fb-mouth-color));
+}
+
+#fallback-char[data-variant="portrait-soft"] .fb-neck {
+  left: 50%;
+  top: 238px;
+  width: 44px;
+  height: 56px;
+  transform: translateX(-50%);
+  border-radius: 0 0 16px 16px;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--fb-skin-color) 82%, white 18%) 0%, color-mix(in srgb, var(--fb-skin-color) 86%, #c69d8a 14%) 100%);
+  z-index: 1;
+}
+
+#fallback-char[data-variant="portrait-soft"] .fb-body {
+  left: 50%;
+  bottom: 18px;
+  width: 264px;
+  height: 182px;
+  transform: translateX(-50%);
+  border-radius: 38px 38px 24px 24px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.12), transparent 18%),
+    linear-gradient(180deg, color-mix(in srgb, var(--fb-coat-color) 70%, white 30%) 0%, var(--fb-coat-color) 46%, color-mix(in srgb, var(--fb-coat-color) 82%, #d8c4b4 18%) 100%);
+}
+
+#fallback-char[data-variant="portrait-soft"] .fb-shirt {
+  left: 50%;
+  top: -10px;
+  width: 88px;
+  height: 148px;
+  transform: translateX(-50%);
+  border-radius: 0 0 22px 22px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0.08)),
+    var(--fb-shirt-color);
+}
+
+#fallback-char[data-variant="portrait-soft"] .fb-lapel {
+  top: 8px;
+  width: 84px;
+  height: 92px;
+  background: rgba(255, 255, 255, 0.18);
+}
+
+#fallback-char[data-variant="portrait-soft"] .fb-lapel-left {
+  left: 46px;
+  clip-path: polygon(0 0, 100% 0, 58% 100%, 0 86%);
+}
+
+#fallback-char[data-variant="portrait-soft"] .fb-lapel-right {
+  right: 46px;
+  clip-path: polygon(0 0, 100% 0, 100% 86%, 42% 100%);
+}
+
+#fallback-char[data-variant="portrait-soft"][data-state="thinking"] .fb-eye {
+  transform: scaleY(0.42);
+}
+
+#fallback-char[data-variant="portrait-soft"][data-state="talking"] .fb-mouth {
+  height: 10px;
+  width: 20px;
+  border-radius: 999px 999px 12px 12px;
+}
+
+#character-panel.speaking #fallback-char[data-variant="portrait-soft"] .fb-portrait {
+  animation: fb-kurose-bob 0.18s ease-in-out infinite alternate;
+}
+
+#character-panel.speaking #fallback-char[data-variant="portrait-soft"] .fb-mouth {
+  animation: fb-talk 0.12s ease-in-out infinite;
+}
+
+#character-panel.speaking #fallback-char[data-variant="portrait-soft"] .fb-eye {
+  animation: fb-eye-glow 0.8s ease-in-out infinite alternate;
+}
+
+#fallback-char[data-variant="portrait-zundamon"] .fb-zunda-shell {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  width: min(100%, 420px);
+  transform: translateY(22px);
+}
+
+#fallback-char[data-variant="portrait-zundamon"] .fb-glow {
+  position: absolute;
+  inset: 58px 60px 118px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at center, var(--fb-glow-color) 0%, rgba(255, 255, 255, 0) 72%);
+  filter: blur(22px);
+}
+
+#fallback-char[data-variant="portrait-zundamon"] .fb-zunda-portrait {
+  position: relative;
+  width: 316px;
+  height: 396px;
+  animation: fb-kurose-float 4.2s ease-in-out infinite;
+}
+
+#fallback-char[data-variant="portrait-zundamon"] .fb-zunda-head,
+#fallback-char[data-variant="portrait-zundamon"] .fb-zunda-ear,
+#fallback-char[data-variant="portrait-zundamon"] .fb-zunda-hair,
+#fallback-char[data-variant="portrait-zundamon"] .fb-zunda-face,
+#fallback-char[data-variant="portrait-zundamon"] .fb-zunda-brow,
+#fallback-char[data-variant="portrait-zundamon"] .fb-zunda-eye,
+#fallback-char[data-variant="portrait-zundamon"] .fb-zunda-cheek,
+#fallback-char[data-variant="portrait-zundamon"] .fb-zunda-mouth,
+#fallback-char[data-variant="portrait-zundamon"] .fb-zunda-body,
+#fallback-char[data-variant="portrait-zundamon"] .fb-zunda-collar,
+#fallback-char[data-variant="portrait-zundamon"] .fb-zunda-bib {
+  position: absolute;
+}
+
+#fallback-char[data-variant="portrait-zundamon"] .fb-zunda-head {
+  top: 32px;
+  left: 50%;
+  width: 204px;
+  height: 212px;
+  transform: translateX(-50%);
+}
+
+#fallback-char[data-variant="portrait-zundamon"] .fb-zunda-ear {
+  top: -6px;
+  width: 70px;
+  height: 108px;
+  border-radius: 42px 42px 18px 18px;
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--fb-hair-color) 82%, white 18%) 0%, var(--fb-hair-color) 68%, color-mix(in srgb, var(--fb-hair-color) 74%, #3f7e23 26%) 100%);
+  clip-path: polygon(50% 0, 100% 24%, 82% 100%, 18% 100%, 0 24%);
+  transform-origin: bottom center;
+}
+
+#fallback-char[data-variant="portrait-zundamon"] .fb-zunda-ear-left {
+  left: -14px;
+  transform: rotate(-22deg);
+}
+
+#fallback-char[data-variant="portrait-zundamon"] .fb-zunda-ear-right {
+  right: -14px;
+  transform: rotate(22deg);
+}
+
+#fallback-char[data-variant="portrait-zundamon"] .fb-zunda-hair {
+  inset: 0 8px 18px;
+  border-radius: 50% 50% 44% 44%;
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--fb-hair-color) 80%, white 20%) 0%, var(--fb-hair-color) 58%, color-mix(in srgb, var(--fb-hair-color) 82%, #3f7e23 18%) 100%);
+}
+
+#fallback-char[data-variant="portrait-zundamon"] .fb-zunda-face {
+  left: 24px;
+  right: 24px;
+  top: 36px;
+  bottom: 20px;
+  border-radius: 48% 48% 50% 50%;
+  background:
+    radial-gradient(circle at 50% 16%, rgba(255, 255, 255, 0.18), transparent 24%),
+    linear-gradient(180deg, #ffffff 0%, var(--fb-skin-color) 70%, #efe5d8 100%);
+}
+
+#fallback-char[data-variant="portrait-zundamon"] .fb-zunda-brows {
+  position: absolute;
+  top: 78px;
+  left: 50%;
+  display: flex;
+  gap: 34px;
+  transform: translateX(-50%);
+}
+
+#fallback-char[data-variant="portrait-zundamon"] .fb-zunda-brow {
+  width: 24px;
+  height: 7px;
+  border-radius: 999px;
+  background: rgba(80, 44, 99, 0.52);
+}
+
+#fallback-char[data-variant="portrait-zundamon"] .fb-zunda-eyes {
+  position: absolute;
+  top: 100px;
+  left: 50%;
+  display: flex;
+  gap: 22px;
+  transform: translateX(-50%);
+}
+
+#fallback-char[data-variant="portrait-zundamon"] .fb-zunda-eye {
+  width: 26px;
+  height: 24px;
+  border-radius: 50% 50% 48% 48%;
+  background:
+    radial-gradient(circle at 50% 34%, rgba(255, 255, 255, 0.95), transparent 28%),
+    var(--fb-eye-color);
+}
+
+#fallback-char[data-variant="portrait-zundamon"] .fb-zunda-cheeks {
+  position: absolute;
+  top: 136px;
+  left: 50%;
+  display: flex;
+  gap: 62px;
+  transform: translateX(-50%);
+}
+
+#fallback-char[data-variant="portrait-zundamon"] .fb-zunda-cheek {
+  width: 18px;
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(246, 193, 91, 0.38);
+}
+
+#fallback-char[data-variant="portrait-zundamon"] .fb-zunda-mouth {
+  left: 50%;
+  bottom: 34px;
+  width: 28px;
+  height: 8px;
+  transform: translateX(-50%);
+  border-radius: 0 0 999px 999px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.2), var(--fb-mouth-color));
+}
+
+#fallback-char[data-variant="portrait-zundamon"] .fb-zunda-body {
+  left: 50%;
+  bottom: 14px;
+  width: 248px;
+  height: 162px;
+  transform: translateX(-50%);
+  border-radius: 38px 38px 26px 26px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.12), transparent 18%),
+    linear-gradient(180deg, color-mix(in srgb, var(--fb-coat-color) 82%, white 18%) 0%, var(--fb-coat-color) 62%, color-mix(in srgb, var(--fb-coat-color) 84%, #cddaa6 16%) 100%);
+}
+
+#fallback-char[data-variant="portrait-zundamon"] .fb-zunda-collar {
+  left: 50%;
+  top: 10px;
+  width: 168px;
+  height: 78px;
+  transform: translateX(-50%);
+  border-radius: 0 0 40px 40px;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--fb-accent) 72%, white 28%) 0%, var(--fb-accent) 100%);
+}
+
+#fallback-char[data-variant="portrait-zundamon"] .fb-zunda-bib {
+  left: 50%;
+  top: 34px;
+  width: 74px;
+  height: 110px;
+  transform: translateX(-50%);
+  border-radius: 0 0 22px 22px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.16)),
+    var(--fb-shirt-color);
+}
+
+#fallback-char[data-variant="portrait-zundamon"][data-state="thinking"] .fb-zunda-eye {
+  transform: scaleY(0.34);
+}
+
+#fallback-char[data-variant="portrait-zundamon"][data-state="talking"] .fb-zunda-mouth {
+  height: 14px;
+  width: 24px;
+  border-radius: 999px 999px 12px 12px;
+}
+
+#character-panel.speaking #fallback-char[data-variant="portrait-zundamon"] .fb-zunda-portrait {
+  animation: fb-kurose-bob 0.18s ease-in-out infinite alternate;
+}
+
+#character-panel.speaking #fallback-char[data-variant="portrait-zundamon"] .fb-zunda-mouth {
+  animation: fb-talk 0.12s ease-in-out infinite;
+}
+
+#character-panel.speaking #fallback-char[data-variant="portrait-zundamon"] .fb-zunda-ear-left {
+  animation: fb-zunda-ear-left 0.22s ease-in-out infinite alternate;
+}
+
+#character-panel.speaking #fallback-char[data-variant="portrait-zundamon"] .fb-zunda-ear-right {
+  animation: fb-zunda-ear-right 0.22s ease-in-out infinite alternate;
+}
+
 @keyframes fb-bob {
   from { transform: translateY(0); }
   to { transform: translateY(-4px); }
@@ -473,6 +886,16 @@ body {
 @keyframes fb-eye-glow {
   from { box-shadow: 0 0 8px rgba(244, 247, 251, 0.14); }
   to { box-shadow: 0 0 16px rgba(244, 247, 251, 0.34); }
+}
+
+@keyframes fb-zunda-ear-left {
+  from { transform: rotate(-22deg); }
+  to { transform: rotate(-28deg); }
+}
+
+@keyframes fb-zunda-ear-right {
+  from { transform: rotate(22deg); }
+  to { transform: rotate(28deg); }
 }
 
 #char-reaction,

@@ -16,13 +16,20 @@ catalog:
 live2d:
   model_url: ""
 fallback_appearance:
-  eye_left: "✦"
-  eye_right: "✦"
-  mouth: "◡"
+  variant: "portrait-soft"
+  eye_left: ""
+  eye_right: ""
+  mouth: ""
   accent_color: "#c77dff"
   mouth_color: "#ff9bd2"
   name_color: "#c77dff"
   face_scale: 1.01
+  skin_color: "#f0d5cb"
+  hair_color: "#d59af2"
+  coat_color: "#f6e4ff"
+  shirt_color: "#ffffff"
+  eye_color: "#6c3f96"
+  glow_color: "rgba(199, 125, 255, 0.22)"
 tts:
   preferred_lang: "ja-JP"
   voice_keywords:
