@@ -3,7 +3,11 @@
 Live2D キャラとペアプロ風に会話できるローカル Web アプリです。  
 FastAPI でチャット API を出し、フロントは素の HTML/CSS/JS で動きます。
 
-![OshiClaw demo preview](./media/readme/oshiclaw-demo.gif)
+公開 demo:
+
+- [GitHub Pages](https://rsasaki0109.github.io/OshiClaw/)
+
+[![OshiClaw demo preview](./media/readme/oshiclaw-demo.gif)](https://rsasaki0109.github.io/OshiClaw/)
 
 短いデモ動画:
 
