@@ -559,6 +559,39 @@ body {
   font-size: 12px;
 }
 
+#demo-character-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 10px;
+  padding: 10px 20px 0;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.demo-meta-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(88, 166, 255, 0.12);
+  border: 1px solid rgba(88, 166, 255, 0.24);
+  color: #9ecbff;
+  font-weight: 600;
+}
+
+#demo-character-source {
+  color: #58a6ff;
+  text-decoration: none;
+}
+
+#demo-character-source:hover {
+  text-decoration: underline;
+}
+
+#demo-character-source[hidden] {
+  display: none;
+}
+
 #chat-messages {
   flex: 1;
   overflow: auto;

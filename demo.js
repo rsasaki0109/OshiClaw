@@ -3,6 +3,13 @@ const CHARACTERS = [
     id: "zundamon",
     name: "ずんだもん",
     role: "マスコット相棒",
+    meta: {
+      group: "公式無料",
+      asset: "3D / Live2D候補",
+      sourceLabel: "東北ずん子・ずんだもんPJ",
+      sourceUrl: "https://zunko.jp/",
+      note: "無料の3D/Live2D導線があり、今の main face に向いています。",
+    },
     live2d: null,
     fallback: {
       eyeLeft: "◕",
@@ -34,9 +41,98 @@ const CHARACTERS = [
     ],
   },
   {
+    id: "takehiro",
+    name: "玄野武宏",
+    role: "兄貴分エンジニア",
+    meta: {
+      group: "公式無料",
+      asset: "MMDモデルあり",
+      sourceLabel: "VirVox Project",
+      sourceUrl: "https://www.virvoxproject.com/%E7%8E%84%E9%87%8E%E6%AD%A6%E5%AE%8F",
+      note: "無料立ち絵と MMD モデルの導線がある男枠。",
+    },
+    live2d: null,
+    fallback: {
+      eyeLeft: "◆",
+      eyeRight: "◆",
+      mouth: "﹂",
+      accent: "#4ec2a6",
+      mouthColor: "#9ce6c3",
+      nameColor: "#4ec2a6",
+      faceScale: 1,
+    },
+    reaction: "その見方で合ってる。続けようぜ。",
+    scenes: [
+      [
+        { role: "user", content: "無料3Dモデルがあるキャラってどれがいい？" },
+        {
+          role: "assistant",
+          content:
+            "## 今ならこの順だ\n\n1. ずんだもん\n2. 玄野武宏\n3. 雨晴はう\n\nまずは導線がはっきりしているキャラから前面に出すのが堅い。",
+        },
+      ],
+      [
+        { role: "user", content: "Pages では何を見せる？" },
+        {
+          role: "assistant",
+          content:
+            "無料素材のあるキャラを前に出して、\n\n- 見た目\n- 会話テンポ\n- Live2D と fallback の差\n\nこの 3 つを先に見せるのがいい。",
+        },
+      ],
+    ],
+  },
+  {
+    id: "hau",
+    name: "雨晴はう",
+    role: "やさしい案内役",
+    meta: {
+      group: "公式無料",
+      asset: "3D素材あり",
+      sourceLabel: "Amehare Project",
+      sourceUrl: "https://amehau.com/",
+      note: "公式サイトで立ち絵や 3D モデルなどの素材配布を案内。",
+    },
+    live2d: null,
+    fallback: {
+      eyeLeft: "◡",
+      eyeRight: "◡",
+      mouth: "ᴗ",
+      accent: "#ff9d76",
+      mouthColor: "#ffd08a",
+      nameColor: "#ff9d76",
+      faceScale: 1,
+    },
+    reaction: "大丈夫だよ。順に見ていこう。",
+    scenes: [
+      [
+        { role: "user", content: "画像だけのキャラでも入れる価値ある？" },
+        {
+          role: "assistant",
+          content:
+            "あるよ。\n\n- まず roster を増やせる\n- 出典や規約を見える化できる\n- Live2D はあとから追加できる\n\n最初から全部モデル化しなくて大丈夫。",
+        },
+      ],
+      [
+        { role: "user", content: "じゃあ次に何する？" },
+        {
+          role: "assistant",
+          content:
+            "まずは Pages の顔を無料素材キャラ中心に整えよう。\nそのあとで、実際に動かす Live2D を増やしていけばいいよ。",
+        },
+      ],
+    ],
+  },
+  {
     id: "mio",
     name: "みお",
     role: "実装アシスタント",
+    meta: {
+      group: "同梱モデル",
+      asset: "Live2Dデモ",
+      sourceLabel: "OshiClaw bundled model",
+      sourceUrl: "",
+      note: "この Pages demo で実際に Live2D が動く確認用キャラ。",
+    },
     live2d: {
       modelUrl: "./static/live2d/haru/haru_greeter_t03.model3.json",
       expressions: { idle: "f00", talking: "f03", thinking: "f02" },
@@ -71,40 +167,6 @@ const CHARACTERS = [
       ],
     ],
   },
-  {
-    id: "buddy",
-    name: "ハル",
-    role: "同期の相棒",
-    live2d: null,
-    fallback: {
-      eyeLeft: "•",
-      eyeRight: "•",
-      mouth: "ᴗ",
-      accent: "#3fb950",
-      mouthColor: "#56d364",
-      nameColor: "#3fb950",
-      faceScale: 0.98,
-    },
-    reaction: "よし、まず demo 触ってみよう。",
-    scenes: [
-      [
-        { role: "user", content: "GitHub Pages では何が見れる？" },
-        {
-          role: "assistant",
-          content:
-            "## Pages 版で見れるもの\n\n- キャラの雰囲気\n- 会話テンポ\n- Markdown 表示\n- Live2D / fallback の見た目差\n\n[ローカル版の起動方法](./README.md) も repo にまとめてある。",
-        },
-      ],
-      [
-        { role: "user", content: "試す順番を 3 つで教えて" },
-        {
-          role: "assistant",
-          content:
-            "1. キャラを切り替える\n2. `会話を再生` を押す\n3. `音声 ON` で雰囲気を見る\n\n気になったらローカル版で実チャットに進もう。",
-        },
-      ],
-    ],
-  },
 ];
 
 const STATUS_LABELS = {
@@ -125,6 +187,10 @@ const charReactionEl = document.getElementById("char-reaction");
 const characterPanelEl = document.getElementById("character-panel");
 const fallbackEl = document.getElementById("fallback-char");
 const live2dCanvasEl = document.getElementById("live2d-canvas");
+const metaGroupEl = document.getElementById("demo-character-group");
+const metaAssetEl = document.getElementById("demo-character-asset");
+const metaSourceEl = document.getElementById("demo-character-source");
+const metaNoteEl = document.getElementById("demo-character-note");
 
 let currentCharacter = CHARACTERS[0];
 let currentSceneIndex = 0;
@@ -133,6 +199,19 @@ let live2dApp = null;
 let live2dModel = null;
 let voiceEnabled = false;
 let activeUtterance = null;
+
+function getSpeechProfile(characterId) {
+  switch (characterId) {
+    case "zundamon":
+      return { rate: 1.08, pitch: 1.12 };
+    case "takehiro":
+      return { rate: 0.98, pitch: 0.9 };
+    case "hau":
+      return { rate: 1, pitch: 1.08 };
+    default:
+      return { rate: 1.04, pitch: 0.98 };
+  }
+}
 
 function setStatus(state) {
   charStatusEl.className = state;
@@ -187,8 +266,9 @@ function speak(text) {
       .replace(/\[([^\]]+)\]\(([^)]+)\)/g, "$1")
   );
   utterance.lang = "ja-JP";
-  utterance.rate = currentCharacter.id === "kurose" ? 0.93 : 1.04;
-  utterance.pitch = currentCharacter.id === "kurose" ? 0.8 : 0.98;
+  const speechProfile = getSpeechProfile(currentCharacter.id);
+  utterance.rate = speechProfile.rate;
+  utterance.pitch = speechProfile.pitch;
   activeUtterance = utterance;
   window.speechSynthesis.speak(utterance);
 }
@@ -588,6 +668,20 @@ function applyCharacter(characterId) {
     CHARACTERS.find((character) => character.id === characterId) || CHARACTERS[0];
   charNameEl.textContent = currentCharacter.name;
   charRoleEl.textContent = currentCharacter.role;
+  metaGroupEl.textContent = currentCharacter.meta?.group || "未分類";
+  metaAssetEl.textContent = currentCharacter.meta?.asset || "fallback";
+  metaNoteEl.textContent = currentCharacter.meta?.note || "";
+
+  if (currentCharacter.meta?.sourceUrl && currentCharacter.meta?.sourceLabel) {
+    metaSourceEl.hidden = false;
+    metaSourceEl.href = currentCharacter.meta.sourceUrl;
+    metaSourceEl.textContent = currentCharacter.meta.sourceLabel;
+  } else {
+    metaSourceEl.hidden = true;
+    metaSourceEl.removeAttribute("href");
+    metaSourceEl.textContent = "";
+  }
+
   document.title = `${currentCharacter.name} | OshiClaw Demo`;
   characterSelectEl.value = currentCharacter.id;
 }
@@ -622,7 +716,7 @@ async function switchCharacter(characterId) {
 
 async function init() {
   populateCharacterSelect();
-  applyCharacter("kurose");
+  applyCharacter("zundamon");
   await loadCharacterVisual();
   await playCurrentScene();
 }
