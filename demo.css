@@ -180,10 +180,15 @@ body {
   --fb-mouth-color: #f97583;
   --fb-name-color: #58a6ff;
   --fb-face-scale: 1;
+  --fb-skin-color: #f3d2ba;
+  --fb-hair-color: #1f2430;
+  --fb-coat-color: #101722;
+  --fb-shirt-color: #d9dee6;
+  --fb-eye-color: #dfe7f2;
+  --fb-glow-color: rgba(88, 166, 255, 0.2);
   display: grid;
   place-items: center;
-  text-align: center;
-  padding-bottom: 84px;
+  position: relative;
   filter: drop-shadow(0 18px 30px rgba(0, 0, 0, 0.24));
 }
 
@@ -191,18 +196,23 @@ body {
   display: none;
 }
 
-.fb-face {
+#fallback-char[data-variant="simple"] {
+  text-align: center;
+  padding-bottom: 84px;
+}
+
+#fallback-char[data-variant="simple"] .fb-face {
   font-size: calc(124px * var(--fb-face-scale));
   line-height: 1;
 }
 
-.fb-eyes {
+#fallback-char[data-variant="simple"] .fb-eyes {
   letter-spacing: 30px;
   margin-bottom: -22px;
   color: var(--fb-accent);
 }
 
-.fb-mouth {
+#fallback-char[data-variant="simple"] .fb-mouth {
   font-size: 64px;
   color: var(--fb-mouth-color);
 }
@@ -214,12 +224,229 @@ body {
   font-weight: 700;
 }
 
-#character-panel.speaking .fb-face {
+#character-panel.speaking #fallback-char[data-variant="simple"] .fb-face {
   animation: fb-bob 0.16s ease-in-out infinite alternate;
 }
 
-#character-panel.speaking .fb-mouth {
+#character-panel.speaking #fallback-char[data-variant="simple"] .fb-mouth {
   animation: fb-talk 0.1s ease-in-out infinite;
+}
+
+#fallback-char[data-variant="portrait-kurose"] .fb-portrait-shell {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  width: min(100%, 430px);
+  transform: translateY(30px);
+}
+
+#fallback-char[data-variant="portrait-kurose"] .fb-glow {
+  position: absolute;
+  inset: 48px 64px 104px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at center, var(--fb-glow-color) 0%, rgba(255, 255, 255, 0) 72%);
+  filter: blur(18px);
+}
+
+#fallback-char[data-variant="portrait-kurose"] .fb-portrait {
+  position: relative;
+  width: 320px;
+  height: 420px;
+  animation: fb-kurose-float 4.2s ease-in-out infinite;
+}
+
+#fallback-char[data-variant="portrait-kurose"] .fb-head {
+  position: absolute;
+  top: 42px;
+  left: 50%;
+  width: 182px;
+  height: 214px;
+  transform: translateX(-50%);
+}
+
+#fallback-char[data-variant="portrait-kurose"] .fb-hair-back,
+#fallback-char[data-variant="portrait-kurose"] .fb-hair-front,
+#fallback-char[data-variant="portrait-kurose"] .fb-faceplate,
+#fallback-char[data-variant="portrait-kurose"] .fb-neck,
+#fallback-char[data-variant="portrait-kurose"] .fb-body,
+#fallback-char[data-variant="portrait-kurose"] .fb-shirt,
+#fallback-char[data-variant="portrait-kurose"] .fb-lapel,
+#fallback-char[data-variant="portrait-kurose"] .fb-brow,
+#fallback-char[data-variant="portrait-kurose"] .fb-eye,
+#fallback-char[data-variant="portrait-kurose"] .fb-mouth {
+  position: absolute;
+}
+
+#fallback-char[data-variant="portrait-kurose"] .fb-hair-back {
+  inset: 0;
+  border-radius: 44% 44% 42% 42%;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08), transparent 26%),
+    linear-gradient(180deg, #2a3342 0%, var(--fb-hair-color) 38%, #0c1219 100%);
+  box-shadow: 0 18px 24px rgba(0, 0, 0, 0.26);
+}
+
+#fallback-char[data-variant="portrait-kurose"] .fb-faceplate {
+  left: 24px;
+  right: 24px;
+  top: 28px;
+  bottom: 16px;
+  border-radius: 44% 44% 48% 48%;
+  background:
+    radial-gradient(circle at 50% 18%, rgba(255, 255, 255, 0.18), transparent 26%),
+    linear-gradient(180deg, #f0d5c1 0%, var(--fb-skin-color) 58%, #d6af91 100%);
+  overflow: hidden;
+}
+
+#fallback-char[data-variant="portrait-kurose"] .fb-hair-front {
+  left: 6px;
+  right: 6px;
+  top: -6px;
+  height: 118px;
+  border-radius: 48% 48% 34% 34%;
+  background:
+    linear-gradient(180deg, #30394a 0%, var(--fb-hair-color) 44%, #10151d 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 64%, 82% 54%, 66% 78%, 52% 58%, 38% 86%, 22% 60%, 0 72%);
+}
+
+#fallback-char[data-variant="portrait-kurose"] .fb-brows {
+  position: absolute;
+  top: 68px;
+  left: 50%;
+  display: flex;
+  gap: 30px;
+  transform: translateX(-50%);
+}
+
+#fallback-char[data-variant="portrait-kurose"] .fb-brow {
+  width: 42px;
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(18, 22, 30, 0.68);
+}
+
+#fallback-char[data-variant="portrait-kurose"] .fb-brow:first-child {
+  transform: rotate(-7deg);
+}
+
+#fallback-char[data-variant="portrait-kurose"] .fb-brow:last-child {
+  transform: rotate(7deg);
+}
+
+#fallback-char[data-variant="portrait-kurose"] .fb-eyes {
+  position: absolute;
+  top: 92px;
+  left: 50%;
+  display: flex;
+  gap: 26px;
+  transform: translateX(-50%);
+}
+
+#fallback-char[data-variant="portrait-kurose"] .fb-eye {
+  width: 32px;
+  height: 12px;
+  border-radius: 999px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.05)),
+    var(--fb-eye-color);
+  box-shadow: 0 0 12px rgba(244, 247, 251, 0.22);
+}
+
+#fallback-char[data-variant="portrait-kurose"] .fb-mouth {
+  left: 50%;
+  bottom: 46px;
+  width: 24px;
+  height: 4px;
+  transform: translateX(-50%);
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.28), var(--fb-mouth-color));
+  opacity: 0.9;
+}
+
+#fallback-char[data-variant="portrait-kurose"] .fb-neck {
+  left: 50%;
+  top: 236px;
+  width: 46px;
+  height: 56px;
+  transform: translateX(-50%);
+  border-radius: 0 0 16px 16px;
+  background: linear-gradient(180deg, #dfb99b 0%, #c59473 100%);
+  z-index: 1;
+}
+
+#fallback-char[data-variant="portrait-kurose"] .fb-body {
+  left: 50%;
+  bottom: 18px;
+  width: 272px;
+  height: 184px;
+  transform: translateX(-50%);
+  border-radius: 32px 32px 22px 22px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08), transparent 18%),
+    linear-gradient(180deg, #263245 0%, var(--fb-coat-color) 42%, #0b1119 100%);
+  overflow: hidden;
+}
+
+#fallback-char[data-variant="portrait-kurose"] .fb-shirt {
+  left: 50%;
+  top: -12px;
+  width: 84px;
+  height: 146px;
+  transform: translateX(-50%);
+  border-radius: 0 0 22px 22px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.06)),
+    var(--fb-shirt-color);
+}
+
+#fallback-char[data-variant="portrait-kurose"] .fb-lapel {
+  top: -2px;
+  width: 98px;
+  height: 110px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.1), transparent 24%), #161f2d;
+}
+
+#fallback-char[data-variant="portrait-kurose"] .fb-lapel-left {
+  left: 40px;
+  clip-path: polygon(0 0, 100% 0, 48% 100%, 0 78%);
+}
+
+#fallback-char[data-variant="portrait-kurose"] .fb-lapel-right {
+  right: 40px;
+  clip-path: polygon(0 0, 100% 0, 100% 78%, 52% 100%);
+}
+
+#fallback-char[data-variant="portrait-kurose"][data-state="thinking"] .fb-eye {
+  transform: scaleY(0.38);
+}
+
+#fallback-char[data-variant="portrait-kurose"][data-state="thinking"] .fb-brow:first-child {
+  transform: translateY(-1px) rotate(-12deg);
+}
+
+#fallback-char[data-variant="portrait-kurose"][data-state="thinking"] .fb-brow:last-child {
+  transform: translateY(-1px) rotate(12deg);
+}
+
+#fallback-char[data-variant="portrait-kurose"][data-state="talking"] .fb-mouth {
+  height: 12px;
+  width: 20px;
+  border-radius: 999px 999px 10px 10px;
+}
+
+#character-panel.speaking #fallback-char[data-variant="portrait-kurose"] .fb-portrait {
+  animation: fb-kurose-bob 0.18s ease-in-out infinite alternate;
+}
+
+#character-panel.speaking #fallback-char[data-variant="portrait-kurose"] .fb-mouth {
+  animation: fb-talk 0.12s ease-in-out infinite;
+}
+
+#character-panel.speaking #fallback-char[data-variant="portrait-kurose"] .fb-eye {
+  animation: fb-eye-glow 0.8s ease-in-out infinite alternate;
 }
 
 @keyframes fb-bob {
@@ -231,6 +458,21 @@ body {
   0%, 100% { transform: scaleY(1) scaleX(1); }
   35% { transform: scaleY(0.24) scaleX(1.05); }
   65% { transform: scaleY(1.2) scaleX(0.96); }
+}
+
+@keyframes fb-kurose-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes fb-kurose-bob {
+  from { transform: translateY(0); }
+  to { transform: translateY(-6px); }
+}
+
+@keyframes fb-eye-glow {
+  from { box-shadow: 0 0 8px rgba(244, 247, 251, 0.14); }
+  to { box-shadow: 0 0 16px rgba(244, 247, 251, 0.34); }
 }
 
 #char-reaction,

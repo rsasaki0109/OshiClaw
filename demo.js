@@ -5,13 +5,20 @@ const CHARACTERS = [
     role: "先輩エンジニア",
     live2d: null,
     fallback: {
-      eyeLeft: "◉",
-      eyeRight: "◉",
-      mouth: "—",
+      variant: "portrait-kurose",
+      eyeLeft: "",
+      eyeRight: "",
+      mouth: "",
       accent: "#ffa657",
       mouthColor: "#ffa657",
       nameColor: "#ffa657",
       faceScale: 1.04,
+      skinColor: "#e6c2a8",
+      hairColor: "#11161f",
+      coatColor: "#1a2230",
+      shirtColor: "#d7dde6",
+      eyeColor: "#f4f7fb",
+      glowColor: "rgba(255, 166, 87, 0.22)",
     },
     reaction: "状況から出して。最短で切る。",
     scenes: [
@@ -137,6 +144,7 @@ let activeUtterance = null;
 function setStatus(state) {
   charStatusEl.className = state;
   charStatusEl.textContent = STATUS_LABELS[state] || state;
+  fallbackEl.dataset.state = state;
   if (live2dModel) {
     try {
       if (state === "thinking") {
@@ -399,19 +407,58 @@ function showTyping() {
 function renderFallbackCharacter() {
   const { fallback } = currentCharacter;
   fallbackEl.hidden = false;
-  fallbackEl.innerHTML = `
-    <div class="fb-wrap">
-      <div class="fb-face">
-        <div class="fb-eyes">${fallback.eyeLeft}${fallback.eyeRight}</div>
-        <div class="fb-mouth">${fallback.mouth}</div>
-        <div class="fb-name">${currentCharacter.name}</div>
-      </div>
-    </div>
-  `;
+  fallbackEl.dataset.variant = fallback.variant || "simple";
+  fallbackEl.dataset.state = "idle";
+  fallbackEl.innerHTML =
+    fallback.variant === "portrait-kurose"
+      ? `
+        <div class="fb-portrait-shell">
+          <div class="fb-glow"></div>
+          <div class="fb-portrait">
+            <div class="fb-head">
+              <div class="fb-hair-back"></div>
+              <div class="fb-faceplate">
+                <div class="fb-brows">
+                  <span class="fb-brow"></span>
+                  <span class="fb-brow"></span>
+                </div>
+                <div class="fb-eyes">
+                  <span class="fb-eye"></span>
+                  <span class="fb-eye"></span>
+                </div>
+                <div class="fb-mouth"></div>
+              </div>
+              <div class="fb-hair-front"></div>
+            </div>
+            <div class="fb-neck"></div>
+            <div class="fb-body">
+              <div class="fb-shirt"></div>
+              <div class="fb-lapel fb-lapel-left"></div>
+              <div class="fb-lapel fb-lapel-right"></div>
+            </div>
+          </div>
+          <div class="fb-name">${currentCharacter.name}</div>
+        </div>
+      `
+      : `
+        <div class="fb-wrap">
+          <div class="fb-face">
+            <div class="fb-eyes">${fallback.eyeLeft}${fallback.eyeRight}</div>
+            <div class="fb-mouth">${fallback.mouth}</div>
+            <div class="fb-name">${currentCharacter.name}</div>
+          </div>
+        </div>
+      `;
   fallbackEl.style.setProperty("--fb-accent", fallback.accent);
   fallbackEl.style.setProperty("--fb-mouth-color", fallback.mouthColor);
   fallbackEl.style.setProperty("--fb-name-color", fallback.nameColor);
   fallbackEl.style.setProperty("--fb-face-scale", String(fallback.faceScale));
+  fallbackEl.style.setProperty("--fb-skin-color", fallback.skinColor || "#f3d2ba");
+  fallbackEl.style.setProperty("--fb-hair-color", fallback.hairColor || "#1f2430");
+  fallbackEl.style.setProperty("--fb-coat-color", fallback.coatColor || "#101722");
+  fallbackEl.style.setProperty("--fb-shirt-color", fallback.shirtColor || "#d9dee6");
+  fallbackEl.style.setProperty("--fb-eye-color", fallback.eyeColor || "#dfe7f2");
+  fallbackEl.style.setProperty("--fb-glow-color", fallback.glowColor || "rgba(88, 166, 255, 0.2)");
 }
 
 function layoutLive2D(model) {

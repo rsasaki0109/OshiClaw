@@ -4,13 +4,20 @@ style: "論点を整理し、最短で切り分ける"
 live2d:
   model_url: ""
 fallback_appearance:
-  eye_left: "◉"
-  eye_right: "◉"
-  mouth: "—"
+  variant: "portrait-kurose"
+  eye_left: ""
+  eye_right: ""
+  mouth: ""
   accent_color: "#ffa657"
   mouth_color: "#ffa657"
   name_color: "#ffa657"
   face_scale: 1.04
+  skin_color: "#e6c2a8"
+  hair_color: "#11161f"
+  coat_color: "#1a2230"
+  shirt_color: "#d7dde6"
+  eye_color: "#f4f7fb"
+  glow_color: "rgba(255, 166, 87, 0.22)"
 tts:
   preferred_lang: "ja-JP"
   voice_keywords:

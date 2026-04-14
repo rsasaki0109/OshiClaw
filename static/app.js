@@ -12,6 +12,7 @@ const DEFAULT_LIVE2D_CONFIG = {
   },
 };
 const DEFAULT_FALLBACK_APPEARANCE = {
+  variant: "simple",
   eye_left: "●",
   eye_right: "●",
   mouth: "ω",
@@ -19,6 +20,12 @@ const DEFAULT_FALLBACK_APPEARANCE = {
   mouth_color: "#f97583",
   name_color: "#58a6ff",
   face_scale: 1,
+  skin_color: "#f3d2ba",
+  hair_color: "#1f2430",
+  coat_color: "#101722",
+  shirt_color: "#d9dee6",
+  eye_color: "#dfe7f2",
+  glow_color: "rgba(88, 166, 255, 0.2)",
 };
 const DEFAULT_TTS_CONFIG = {
   preferred_lang: "ja-JP",
@@ -46,13 +53,20 @@ const DEFAULT_CHARACTER = {
     },
   },
   fallback_appearance: {
-    eye_left: "◉",
-    eye_right: "◉",
-    mouth: "—",
+    variant: "portrait-kurose",
+    eye_left: "",
+    eye_right: "",
+    mouth: "",
     accent_color: "#ffa657",
     mouth_color: "#ffa657",
     name_color: "#ffa657",
     face_scale: 1.04,
+    skin_color: "#e6c2a8",
+    hair_color: "#11161f",
+    coat_color: "#1a2230",
+    shirt_color: "#d7dde6",
+    eye_color: "#f4f7fb",
+    glow_color: "rgba(255, 166, 87, 0.22)",
   },
   tts: {
     preferred_lang: "ja-JP",
@@ -173,6 +187,56 @@ function getCurrentLive2DConfig() {
 
 function getCurrentFallbackAppearance() {
   return buildFallbackAppearance(currentCharacter);
+}
+
+function renderSimpleFallbackMarkup(fallbackAppearance) {
+  return `
+    <div class="fb-face">
+      <div class="fb-eyes"><span class="fb-eye">${fallbackAppearance.eye_left}</span><span class="fb-eye">${fallbackAppearance.eye_right}</span></div>
+      <div class="fb-mouth">${fallbackAppearance.mouth}</div>
+    </div>
+    <div class="fb-name">${currentCharacter.name}</div>
+  `;
+}
+
+function renderPortraitKuroseFallbackMarkup() {
+  return `
+    <div class="fb-portrait-shell">
+      <div class="fb-glow"></div>
+      <div class="fb-portrait">
+        <div class="fb-head">
+          <div class="fb-hair-back"></div>
+          <div class="fb-faceplate">
+            <div class="fb-brows">
+              <span class="fb-brow"></span>
+              <span class="fb-brow"></span>
+            </div>
+            <div class="fb-eyes">
+              <span class="fb-eye"></span>
+              <span class="fb-eye"></span>
+            </div>
+            <div class="fb-mouth"></div>
+          </div>
+          <div class="fb-hair-front"></div>
+        </div>
+        <div class="fb-neck"></div>
+        <div class="fb-body">
+          <div class="fb-shirt"></div>
+          <div class="fb-lapel fb-lapel-left"></div>
+          <div class="fb-lapel fb-lapel-right"></div>
+        </div>
+      </div>
+      <div class="fb-name">${currentCharacter.name}</div>
+    </div>
+  `;
+}
+
+function renderFallbackMarkup(fallbackAppearance) {
+  if (fallbackAppearance.variant === "portrait-kurose") {
+    return renderPortraitKuroseFallbackMarkup();
+  }
+
+  return renderSimpleFallbackMarkup(fallbackAppearance);
 }
 
 function getCurrentTtsConfig() {
@@ -500,17 +564,19 @@ function showFallbackCharacter(container) {
 
   const fb = document.createElement("div");
   fb.id = "fallback-char";
-  fb.innerHTML = `
-    <div class="fb-face">
-      <div class="fb-eyes"><span class="fb-eye">${fallbackAppearance.eye_left}</span><span class="fb-eye">${fallbackAppearance.eye_right}</span></div>
-      <div class="fb-mouth">${fallbackAppearance.mouth}</div>
-    </div>
-    <div class="fb-name">${currentCharacter.name}</div>
-  `;
+  fb.dataset.variant = fallbackAppearance.variant || "simple";
+  fb.dataset.state = "idle";
+  fb.innerHTML = renderFallbackMarkup(fallbackAppearance);
   fb.style.setProperty("--fb-accent", fallbackAppearance.accent_color);
   fb.style.setProperty("--fb-mouth-color", fallbackAppearance.mouth_color);
   fb.style.setProperty("--fb-name-color", fallbackAppearance.name_color);
   fb.style.setProperty("--fb-face-scale", String(fallbackAppearance.face_scale));
+  fb.style.setProperty("--fb-skin-color", fallbackAppearance.skin_color);
+  fb.style.setProperty("--fb-hair-color", fallbackAppearance.hair_color);
+  fb.style.setProperty("--fb-coat-color", fallbackAppearance.coat_color);
+  fb.style.setProperty("--fb-shirt-color", fallbackAppearance.shirt_color);
+  fb.style.setProperty("--fb-eye-color", fallbackAppearance.eye_color);
+  fb.style.setProperty("--fb-glow-color", fallbackAppearance.glow_color);
   container.insertBefore(fb, container.firstChild);
   fb.addEventListener("click", () => handleModelHit(["Body"]));
 }
@@ -548,7 +614,7 @@ function setModelState(state) {
   // Fallback character state
   const fb = document.getElementById("fallback-char");
   if (fb) {
-    fb.className = state !== "idle" ? state : "";
+    fb.dataset.state = state;
   }
 }
 
