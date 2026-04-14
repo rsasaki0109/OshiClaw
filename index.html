@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>OshiClaw Demo</title>
-  <meta name="description" content="OshiClaw の GitHub Pages デモ。ずんだもんや無料素材キャラで開発体験を確認できます。">
+  <meta name="description" content="OshiClaw の GitHub Pages 公開プレビュー。bundled sample の Live2D と、公式キャラ候補の出典リンクだけを安全な範囲で見せています。">
   <link rel="stylesheet" href="./demo.css">
 </head>
 <body>
@@ -12,11 +12,13 @@
     <header class="hero">
       <div class="hero-copy">
         <p class="eyebrow">OshiClaw Demo</p>
-        <h1>ずんだもんや無料素材キャラで<br>開発体験を試せるデモ</h1>
+        <h1>bundled sample の Live2D と<br>公式キャラ候補を並べたデモ</h1>
         <p class="hero-text">
           `OshiClaw` の見た目と会話テンポをそのまま触れる静的デモです。
           GitHub Pages 上では backend を動かせないので、ここでは
-          `無料の公式立ち絵 / 3D素材のあるキャラ` を中心に、1体だけ Live2D 実動作を混ぜて公開しています。
+          `bundled sample の Live2D 実動作` に加えて、
+          `公式に配布導線があるキャラ候補` の出典リンクだけを並べています。
+          素材やモデル本体のミラーはしていません。
         </p>
       </div>
       <div class="hero-actions">
@@ -29,7 +31,7 @@
       <section class="demo-stage">
         <div class="demo-toolbar">
           <label class="toolbar-field">
-            <span>キャラ</span>
+            <span>サンプル</span>
             <select id="character-select" aria-label="デモキャラクター選択"></select>
           </label>
           <div class="toolbar-actions">
@@ -49,21 +51,21 @@
           <div id="chat-panel">
             <div class="chat-header">
               <div>
-                <div class="char-name">ずんだもん</div>
-                <div class="char-role">マスコット相棒</div>
+                <div class="char-name">みお</div>
+                <div class="char-role">実装アシスタント</div>
               </div>
               <span class="demo-badge">Static Demo</span>
             </div>
             <div id="demo-character-meta">
-              <span id="demo-character-group" class="demo-meta-badge">公式無料</span>
-              <span id="demo-character-asset" class="demo-meta-badge">3D / Live2D候補</span>
-              <a id="demo-character-source" href="https://zunko.jp/" target="_blank" rel="noopener noreferrer">東北ずん子・ずんだもんPJ</a>
-              <span id="demo-character-note">無料の3D/Live2D導線があり、今の main face に向いています。</span>
+              <span id="demo-character-group" class="demo-meta-badge">同梱サンプル</span>
+              <span id="demo-character-asset" class="demo-meta-badge">Live2D 実動作</span>
+              <a id="demo-character-source" href="" target="_blank" rel="noopener noreferrer" hidden></a>
+              <span id="demo-character-note">Pages では bundled sample の Live2D だけを実体表示し、公式キャラは出典リンクだけを置いています。</span>
             </div>
 
             <div id="chat-messages"></div>
             <div id="demo-note">
-              Pages 版は静的デモです。実際の LLM チャットはローカル実行版で動きます。
+              Pages 版は静的デモです。実際の LLM チャット、キャラ切替、ローカルモデル運用はローカル実行版で動きます。
             </div>
           </div>
         </div>
@@ -73,8 +75,8 @@
         <section class="info-card">
           <h2>見どころ</h2>
           <ul>
-            <li>ずんだもん、玄野武宏、雨晴はうなど無料素材の強いキャラを優先表示</li>
-            <li>1体は Live2D 実動作、他キャラは fallback 見た目で切替</li>
+            <li>bundled sample の Live2D を実際に動かして見せる</li>
+            <li>公式キャラ候補は select から切り替えて出典リンクを確認できる</li>
             <li>会話のストリーミング風アニメーション</li>
             <li>Markdown を含んだ返答表示</li>
             <li>TTS とリアクション演出の一部をブラウザ内で再現</li>
@@ -82,12 +84,12 @@
         </section>
 
         <section class="info-card">
-          <h2>今の featured</h2>
+          <h2>公式候補</h2>
           <ul>
-            <li>ずんだもん: 公式3D / Live2D 導線が強い main face</li>
-            <li>玄野武宏: 無料立ち絵と MMD モデルあり</li>
-            <li>雨晴はう: 公式サイトで立ち絵や 3D 素材配布を案内</li>
-            <li>みお: この demo で実際に Live2D が動く確認用キャラ</li>
+            <li>ずんだもん: 公式ショップに VTubeStudio / 3D 配布あり</li>
+            <li>東北ずん子: 公式ショップに VTubeStudio / 3D 配布あり</li>
+            <li>玄野武宏: VirVox で MMD モデル配布あり</li>
+            <li>Pages では案内だけに留め、素材やモデル自体はミラーしていません</li>
           </ul>
         </section>
 
@@ -95,8 +97,8 @@
           <h2>ローカル版との差分</h2>
           <ul>
             <li>GitHub Pages では `/api/chat` を使わず、会話はプリセット再生です</li>
+            <li>public ページには bundled sample 以外の素材やモデルを同梱していません</li>
             <li>モデル切替、履歴永続化、実 LLM 応答は repo のローカル版で利用できます</li>
-            <li>画像素材や 3D 素材の導線は多いですが、実 Live2D モデル資産はまだ少ないです</li>
           </ul>
         </section>
 
