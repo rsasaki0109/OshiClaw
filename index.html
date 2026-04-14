@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>oshi-chat Demo</title>
+  <meta name="description" content="推しキャラとペアプロ風に会話する oshi-chat の GitHub Pages デモ">
+  <link rel="stylesheet" href="./demo.css">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">GitHub Pages Demo</p>
+        <h1>推しキャラと<br>ペアプロできるチャット体験</h1>
+        <p class="hero-text">
+          `oshi-chat` の見た目と会話テンポをそのまま触れる静的デモです。
+          GitHub Pages 上では backend を動かせないので、ここではキャラ切替と会話演出を公開しています。
+        </p>
+      </div>
+      <div class="hero-actions">
+        <a class="ghost-link" href="https://github.com/rsasaki0109/oshi-chat" target="_blank" rel="noopener noreferrer">GitHub Repo</a>
+        <button id="voice-toggle" type="button" class="ghost-btn" aria-pressed="false">音声 OFF</button>
+      </div>
+    </header>
+
+    <main class="demo-layout">
+      <section class="demo-stage">
+        <div class="demo-toolbar">
+          <label class="toolbar-field">
+            <span>キャラ</span>
+            <select id="character-select" aria-label="デモキャラクター選択"></select>
+          </label>
+          <div class="toolbar-actions">
+            <button id="replay-btn" type="button">会話を再生</button>
+            <button id="next-scene-btn" type="button" class="subtle-btn">次の例</button>
+          </div>
+        </div>
+
+        <div id="app-shell">
+          <div id="character-panel">
+            <canvas id="live2d-canvas"></canvas>
+            <div id="fallback-char" hidden></div>
+            <div id="char-reaction" hidden></div>
+            <div id="char-status">待機中...</div>
+          </div>
+
+          <div id="chat-panel">
+            <div class="chat-header">
+              <div>
+                <div class="char-name">みお</div>
+                <div class="char-role">後輩エンジニア</div>
+              </div>
+              <span class="demo-badge">Static Demo</span>
+            </div>
+
+            <div id="chat-messages"></div>
+            <div id="demo-note">
+              Pages 版は静的デモです。実際の LLM チャットはローカル実行版で動きます。
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <aside class="info-panel">
+        <section class="info-card">
+          <h2>見どころ</h2>
+          <ul>
+            <li>みおは Live2D、他キャラは fallback 見た目で切替</li>
+            <li>会話のストリーミング風アニメーション</li>
+            <li>Markdown を含んだ返答表示</li>
+            <li>TTS とリアクション演出の一部をブラウザ内で再現</li>
+          </ul>
+        </section>
+
+        <section class="info-card">
+          <h2>ローカル版との差分</h2>
+          <ul>
+            <li>GitHub Pages では `/api/chat` を使わず、会話はプリセット再生です</li>
+            <li>モデル切替、履歴永続化、実 LLM 応答は repo のローカル版で利用できます</li>
+            <li>Live2D モデル資産は今のところ 1 体だけです</li>
+          </ul>
+        </section>
+
+        <section class="info-card compact">
+          <h2>ローカル起動</h2>
+          <pre><code>python3 -m pip install -r requirements.txt
+cp .env.example .env
+python3 server.py</code></pre>
+        </section>
+      </aside>
+    </main>
+  </div>
+
+  <script src="https://cubism.live2d.com/sdk-web/cubismcore/live2dcubismcore.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/pixi.js@6.5.10/dist/browser/pixi.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/pixi-live2d-display@0.4.0/dist/cubism4.min.js"></script>
+  <script src="./demo.js"></script>
+</body>
+</html>

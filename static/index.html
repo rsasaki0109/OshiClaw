@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>推しチャット - みお</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div id="app">
+    <!-- 左: Live2Dキャラ表示エリア -->
+    <div id="character-area">
+      <canvas id="live2d-canvas"></canvas>
+      <div id="char-status">待機中...</div>
+    </div>
+
+    <!-- 右: チャットパネル -->
+    <div id="chat-area">
+      <div id="chat-header">
+        <span class="char-name">みお</span>
+        <span class="char-role">後輩エンジニア</span>
+        <select id="character-select" aria-label="キャラクター選択"></select>
+        <select id="model-select" aria-label="モデル選択"></select>
+        <div id="audio-controls" hidden>
+          <button id="tts-toggle" type="button" aria-pressed="true">音声 ON</button>
+          <select id="tts-voice-select" aria-label="音声選択"></select>
+        </div>
+        <button id="reset-btn" title="会話リセット">&#x21bb;</button>
+      </div>
+      <div id="chat-messages"></div>
+      <div id="chat-input-area">
+        <textarea id="chat-input" placeholder="先輩、何か聞いて！" rows="1"></textarea>
+        <div id="input-actions">
+          <button id="stop-btn" type="button" disabled>停止</button>
+          <button id="send-btn">送信</button>
+        </div>
+      </div>
+      <div id="request-feedback" hidden>
+        <span id="request-feedback-text"></span>
+        <button id="retry-btn" type="button" hidden>再試行</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Live2D dependencies -->
+  <script src="https://cubism.live2d.com/sdk-web/cubismcore/live2dcubismcore.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/pixi.js@6.5.10/dist/browser/pixi.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/pixi-live2d-display@0.4.0/dist/cubism4.min.js"></script>
+  <script src="/static/app.js"></script>
+</body>
+</html>
