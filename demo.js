@@ -1,8 +1,42 @@
 const CHARACTERS = [
   {
+    id: "kurose",
+    name: "黒瀬",
+    role: "先輩エンジニア",
+    live2d: null,
+    fallback: {
+      eyeLeft: "◉",
+      eyeRight: "◉",
+      mouth: "—",
+      accent: "#ffa657",
+      mouthColor: "#ffa657",
+      nameColor: "#ffa657",
+      faceScale: 1.04,
+    },
+    reaction: "状況から出して。最短で切る。",
+    scenes: [
+      [
+        { role: "user", content: "このプロジェクト、どんな感じ？" },
+        {
+          role: "assistant",
+          content:
+            "## OshiClaw の狙い\n\n- 開発支援とキャラ体験を同じ UI に乗せる\n- ローカルでは実 LLM、Pages では静的 demo を見せる\n- public に出しても説明しやすいクール寄りの世界観に寄せている\n\nまずは使い道が一目で分かる形にしている。",
+        },
+      ],
+      [
+        { role: "user", content: "次に詰めるなら？" },
+        {
+          role: "assistant",
+          content:
+            "次ならこの順だ。\n\n1. 実 Live2D モデルを増やす\n2. 会話 export を入れる\n3. Markdown の table を足す\n\n優先度を守れば、公開後も崩れない。",
+        },
+      ],
+    ],
+  },
+  {
     id: "mio",
     name: "みお",
-    role: "後輩エンジニア",
+    role: "実装アシスタント",
     live2d: {
       modelUrl: "./static/live2d/haru/haru_greeter_t03.model3.json",
       expressions: { idle: "f00", talking: "f03", thinking: "f02" },
@@ -17,7 +51,7 @@ const CHARACTERS = [
       nameColor: "#58a6ff",
       faceScale: 1,
     },
-    reaction: "えへへ、demo でも一緒にがんばろっ！",
+    reaction: "状況を見よう。実装の当たりを一緒に絞るね。",
     scenes: [
       [
         { role: "user", content: "このプロジェクト、どんな感じ？" },
@@ -32,41 +66,7 @@ const CHARACTERS = [
         {
           role: "assistant",
           content:
-            "> まず再現条件を絞るのが近道かも。\n\n1. 失敗する操作を固定\n2. Console / Network を確認\n3. 直近差分を切る\n\n必要ならローカル版で実際に会話しよっか。",
-        },
-      ],
-    ],
-  },
-  {
-    id: "senpai",
-    name: "凛先輩",
-    role: "厳しめ先輩",
-    live2d: null,
-    fallback: {
-      eyeLeft: "◉",
-      eyeRight: "◉",
-      mouth: "—",
-      accent: "#ffa657",
-      mouthColor: "#ffa657",
-      nameColor: "#ffa657",
-      faceScale: 1.04,
-    },
-    reaction: "状況から出して。要点だけでいい。",
-    scenes: [
-      [
-        { role: "user", content: "この app の売りって何？" },
-        {
-          role: "assistant",
-          content:
-            "## 売り\n\n- ただの chat UI で終わっていない\n- キャラ体験と開発支援を同居させている\n- Pages では demo、ローカルでは実運用に分けている\n\n曖昧に広げず、使い道が見える構成だ。",
-        },
-      ],
-      [
-        { role: "user", content: "次に詰めるなら？" },
-        {
-          role: "assistant",
-          content:
-            "次ならこの順だ。\n\n- 実 Live2D モデルを増やす\n- table を含む Markdown を足す\n- 会話の export を入れる\n\nまずは demo から本体へ人を流せる導線を強くしろ。",
+            "> まず再現条件を絞るのが近道かも。\n\n1. 失敗する操作を固定\n2. Console / Network を確認\n3. 直近差分を切る\n\n必要ならローカル版で実際に会話しよう。",
         },
       ],
     ],
@@ -85,14 +85,14 @@ const CHARACTERS = [
       nameColor: "#3fb950",
       faceScale: 0.98,
     },
-    reaction: "よし、まず demo 触ってみよ。",
+    reaction: "よし、まず demo 触ってみよう。",
     scenes: [
       [
         { role: "user", content: "GitHub Pages では何が見れる？" },
         {
           role: "assistant",
           content:
-            "## Pages 版で見れるもの\n\n- キャラの雰囲気\n- 会話テンポ\n- Markdown 表示\n- Live2D / fallback の見た目差\n\n[ローカル版の起動方法](./README.md) も repo にまとめてあるよ。",
+            "## Pages 版で見れるもの\n\n- キャラの雰囲気\n- 会話テンポ\n- Markdown 表示\n- Live2D / fallback の見た目差\n\n[ローカル版の起動方法](./README.md) も repo にまとめてある。",
         },
       ],
       [
@@ -100,7 +100,7 @@ const CHARACTERS = [
         {
           role: "assistant",
           content:
-            "1. キャラを切り替える\n2. `会話を再生` を押す\n3. `音声 ON` で雰囲気を見る\n\n気になったらローカル版で実チャットに行こう。",
+            "1. キャラを切り替える\n2. `会話を再生` を押す\n3. `音声 ON` で雰囲気を見る\n\n気になったらローカル版で実チャットに進もう。",
         },
       ],
     ],
@@ -186,8 +186,8 @@ function speak(text) {
       .replace(/\[([^\]]+)\]\(([^)]+)\)/g, "$1")
   );
   utterance.lang = "ja-JP";
-  utterance.rate = currentCharacter.id === "senpai" ? 0.95 : 1.04;
-  utterance.pitch = currentCharacter.id === "mio" ? 1.12 : 0.98;
+  utterance.rate = currentCharacter.id === "kurose" ? 0.93 : 1.04;
+  utterance.pitch = currentCharacter.id === "kurose" ? 0.8 : 0.98;
   activeUtterance = utterance;
   window.speechSynthesis.speak(utterance);
 }
@@ -548,7 +548,7 @@ function applyCharacter(characterId) {
     CHARACTERS.find((character) => character.id === characterId) || CHARACTERS[0];
   charNameEl.textContent = currentCharacter.name;
   charRoleEl.textContent = currentCharacter.role;
-  document.title = `${currentCharacter.name} | oshi-chat Demo`;
+  document.title = `${currentCharacter.name} | OshiClaw Demo`;
   characterSelectEl.value = currentCharacter.id;
 }
 
@@ -582,7 +582,7 @@ async function switchCharacter(characterId) {
 
 async function init() {
   populateCharacterSelect();
-  applyCharacter("mio");
+  applyCharacter("kurose");
   await loadCharacterVisual();
   await playCurrentScene();
 }

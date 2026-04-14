@@ -1,16 +1,16 @@
-# oshi-chat 実装プラン
+# OshiClaw 実装プラン
 
 ## プロジェクト概要
 
-「推しキャラと一緒にコーディングできるチャットツール」
-キャラクター（みお：後輩エンジニア）がLive2Dで動き、ユーザーとペアプロ風に会話するWebアプリ。
+「開発パートナーと一緒にコーディングできるチャットツール」
+キャラクター（黒瀬：クールな先輩エンジニア）を軸に、ユーザーとペアプロ風に会話するWebアプリ。
 
 ---
 
 ## 現在のファイル構成
 
 ```
-oshi-chat/
+OshiClaw/
 ├── character.yaml          # [済] キャラ定義（name, tone, style, system_prompt）
 ├── llm.py                  # [済] OpenAI API呼び出し（遅延初期化、gpt-4o-mini）
 ├── context.py              # [済] カレントdir .pyファイル読み込み（最大300行x5ファイル）
@@ -139,9 +139,9 @@ oshi-chat/
 - `character.yaml` を複数キャラ対応に拡張、またはディレクトリ化:
   ```
   characters/
-    mio.yaml      # 後輩系
-    senpai.yaml   # 厳しめ先輩
-    buddy.yaml    # 同期の友達
+    kurose.yaml   # クールな先輩エンジニア
+    mio.yaml      # 実装アシスタント
+    buddy.yaml    # 同期の相棒
   ```
 - UIにキャラ選択ドロップダウン追加
 - `server.py` に `POST /api/character` エンドポイント追加

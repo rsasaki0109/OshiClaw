@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""推しキャラと一緒にコーディングできるチャットツール"""
+"""OshiClaw CLI"""
 
 import sys
 from pathlib import Path
@@ -31,7 +31,7 @@ def main():
 
     messages = [{"role": "system", "content": system_prompt}]
 
-    print(f"\n  {character['name']}：先輩、今日も一緒にがんばろっ！")
+    print(f"\n  {character['name']}：状況を出して。何から見る？")
     print(f"  （exitで終了）\n")
 
     while True:

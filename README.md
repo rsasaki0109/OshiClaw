@@ -1,4 +1,4 @@
-# oshi-chat
+# OshiClaw
 
 Live2D キャラとペアプロ風に会話できるローカル Web アプリです。  
 FastAPI でチャット API を出し、フロントは素の HTML/CSS/JS で動きます。
@@ -24,10 +24,10 @@ FastAPI でチャット API を出し、フロントは素の HTML/CSS/JS で動
 
 ## 現在のキャラ
 
+- `黒瀬`
+  - fallback 見た目
 - `みお`
   - Live2D モデルあり
-- `凛先輩`
-  - fallback 見た目
 - `ハル`
   - fallback 見た目
 
@@ -94,7 +94,7 @@ python3 main.py
 ## 主な構成
 
 ```text
-oshi-chat/
+OshiClaw/
 ├── server.py          # FastAPI サーバー
 ├── llm.py             # OpenAI / OpenAI 互換 LLM 呼び出し
 ├── main.py            # CLI モード

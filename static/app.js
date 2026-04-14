@@ -27,14 +27,14 @@ const DEFAULT_TTS_CONFIG = {
   pitch: 1,
 };
 const DEFAULT_CHARACTER = {
-  id: "mio",
-  name: "みお",
-  role_label: "後輩エンジニア",
-  intro_message: "先輩、今日も一緒にがんばろっ！なんでも聞いてね～",
-  reset_message: "りせっと完了！また最初からよろしくねっ",
-  input_placeholder: "先輩、何か聞いて！",
+  id: "kurose",
+  name: "黒瀬",
+  role_label: "先輩エンジニア",
+  intro_message: "状況を出して。最短で切り分ける。",
+  reset_message: "会話を切り替えた。論点からやり直そう。",
+  input_placeholder: "ログ、コード、エラーを貼って",
   live2d: {
-    model_url: "/static/live2d/haru/haru_greeter_t03.model3.json",
+    model_url: "",
     expressions: {
       idle: "f00",
       thinking: "f02",
@@ -46,38 +46,38 @@ const DEFAULT_CHARACTER = {
     },
   },
   fallback_appearance: {
-    eye_left: "●",
-    eye_right: "●",
-    mouth: "ω",
-    accent_color: "#58a6ff",
-    mouth_color: "#f97583",
-    name_color: "#58a6ff",
-    face_scale: 1,
+    eye_left: "◉",
+    eye_right: "◉",
+    mouth: "—",
+    accent_color: "#ffa657",
+    mouth_color: "#ffa657",
+    name_color: "#ffa657",
+    face_scale: 1.04,
   },
   tts: {
     preferred_lang: "ja-JP",
     voice_keywords: [
-      "kyoko",
-      "sayaka",
-      "nanami",
-      "haruka",
+      "otoya",
+      "ichiro",
+      "daichi",
       "google 日本語",
     ],
-    rate: 1.04,
-    pitch: 1.14,
+    rate: 0.93,
+    pitch: 0.8,
   },
   hit_reactions: {
-    Head: "えへへ、頭なでられた！",
-    Body: "わっ、つんつんされた！",
+    Head: "その観点でいい。続きを見よう。",
+    Body: "ログを見れば早い。次に進むぞ。",
   },
 };
 const HIT_REACTION_EXPRESSIONS = {
   Head: "talking",
   Body: "thinking",
 };
-const LOCAL_SESSION_STORAGE_KEY = "oshi-chat:session:v1";
-const LOCAL_AUDIO_STORAGE_KEY = "oshi-chat:audio:v2";
-const LEGACY_AUDIO_STORAGE_KEY = "oshi-chat:audio:v1";
+const LOCAL_SESSION_STORAGE_KEY = "oshi-claw:session:v2";
+const LEGACY_SESSION_STORAGE_KEYS = ["oshi-chat:session:v1"];
+const LOCAL_AUDIO_STORAGE_KEY = "oshi-claw:audio:v3";
+const LEGACY_AUDIO_STORAGE_KEYS = ["oshi-chat:audio:v2", "oshi-chat:audio:v1"];
 const TTS_AUTO_VOICE_VALUE = "__auto__";
 const GLOBAL_TTS_SELECTION_KEY = "__global__";
 const SLOW_HINT_AFTER_SECONDS = 10;
@@ -194,7 +194,7 @@ function applyCharacter(character) {
 
   document.querySelector(".char-name").textContent = currentCharacter.name;
   document.querySelector(".char-role").textContent = currentCharacter.role_label;
-  document.title = `推しチャット - ${currentCharacter.name}`;
+  document.title = `OshiClaw - ${currentCharacter.name}`;
   inputEl.placeholder = currentCharacter.input_placeholder;
 
   if (supportsSpeechSynthesis()) {
@@ -1009,7 +1009,7 @@ function supportsSpeechSynthesis() {
 }
 
 function loadStoredAudioSettings() {
-  const storageKeys = [LOCAL_AUDIO_STORAGE_KEY, LEGACY_AUDIO_STORAGE_KEY];
+  const storageKeys = [LOCAL_AUDIO_STORAGE_KEY, ...LEGACY_AUDIO_STORAGE_KEYS];
 
   for (const storageKey of storageKeys) {
     try {
@@ -1366,34 +1366,40 @@ function initSpeechSynthesis() {
 }
 
 function loadStoredSession() {
-  try {
-    const raw = localStorage.getItem(LOCAL_SESSION_STORAGE_KEY);
-    if (!raw) return null;
+  const storageKeys = [LOCAL_SESSION_STORAGE_KEY, ...LEGACY_SESSION_STORAGE_KEYS];
 
-    const parsed = JSON.parse(raw);
-    if (
-      typeof parsed !== "object" ||
-      parsed === null ||
-      !Array.isArray(parsed.messages)
-    ) {
-      return null;
+  for (const storageKey of storageKeys) {
+    try {
+      const raw = localStorage.getItem(storageKey);
+      if (!raw) continue;
+
+      const parsed = JSON.parse(raw);
+      if (
+        typeof parsed !== "object" ||
+        parsed === null ||
+        !Array.isArray(parsed.messages)
+      ) {
+        continue;
+      }
+
+      return {
+        character_id:
+          typeof parsed.character_id === "string" ? parsed.character_id : null,
+        model_name:
+          typeof parsed.model_name === "string" ? parsed.model_name : null,
+        messages: parsed.messages.filter(
+          (message) =>
+            message &&
+            (message.role === "user" || message.role === "assistant") &&
+            typeof message.content === "string"
+        ),
+      };
+    } catch (e) {
+      console.warn("Stored session is invalid, ignoring it:", e);
     }
-
-    return {
-      character_id:
-        typeof parsed.character_id === "string" ? parsed.character_id : null,
-      model_name: typeof parsed.model_name === "string" ? parsed.model_name : null,
-      messages: parsed.messages.filter(
-        (message) =>
-          message &&
-          (message.role === "user" || message.role === "assistant") &&
-          typeof message.content === "string"
-      ),
-    };
-  } catch (e) {
-    console.warn("Stored session is invalid, ignoring it:", e);
-    return null;
   }
+
+  return null;
 }
 
 function saveStoredSession() {

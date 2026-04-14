@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""推しチャット Webサーバー"""
+"""OshiClaw Webサーバー"""
 
 import os
 from collections.abc import Iterator
@@ -22,7 +22,7 @@ app = FastAPI()
 
 BASE_DIR = Path(__file__).parent
 CHARACTERS_DIR = BASE_DIR / "characters"
-DEFAULT_CHARACTER_ID = "mio"
+DEFAULT_CHARACTER_ID = "kurose"
 
 # コードコンテキスト（起動時に1回読み込み）
 CODE_CONTEXT = load_context(str(BASE_DIR))
