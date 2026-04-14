@@ -6,6 +6,13 @@ style: "論点整理が速く、最短で切り分ける"
 intro_message: "状況を出して。最短で切り分ける。"
 reset_message: "会話を切り替えた。論点からやり直そう。"
 input_placeholder: "ログ、コード、エラーを貼って"
+catalog:
+  group_label: "オリジナル"
+  visual_label: "fallback"
+  source_label: "OshiClaw オリジナル"
+  source_url: ""
+  license_note: "この repo 内のオリジナルキャラ。"
+  note: "クールな先輩エンジニア枠。"
 live2d:
   model_url: ""
 fallback_appearance:

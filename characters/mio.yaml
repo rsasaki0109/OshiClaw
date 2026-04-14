@@ -6,6 +6,13 @@ style: "一緒に考えるが、判断は雑にしない"
 intro_message: "状況を見せて。実装の当たりを一緒に絞ろう。"
 reset_message: "会話を整理したよ。必要な情報から出していこう。"
 input_placeholder: "ログやコードを貼って"
+catalog:
+  group_label: "ローカルモデル"
+  visual_label: "Live2D"
+  source_label: "同梱 Live2D アセット"
+  source_url: ""
+  license_note: "この repo に同梱したローカルモデルを利用。"
+  note: "今のところ実モデル表示できるのはこのキャラだけ。"
 live2d:
   model_url: "/static/live2d/haru/haru_greeter_t03.model3.json"
   expressions:
