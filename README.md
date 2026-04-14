@@ -11,6 +11,7 @@ FastAPI でチャット API を出し、フロントは素の HTML/CSS/JS で動
 - [MP4](./media/readme/oshiclaw-demo.mp4)
 
 再配布しにくいモデルがある前提でも、README から挙動をすぐ確認できるようにしています。
+GitHub Pages 側は、public では bundled sample の Live2D 実動作と、公式キャラ候補の出典リンクだけを見せる構成にしています。
 
 ## できること
 

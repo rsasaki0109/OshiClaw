@@ -1,189 +1,158 @@
 const CHARACTERS = [
   {
-    id: "zundamon",
-    name: "ずんだもん",
-    role: "マスコット相棒",
-    meta: {
-      group: "公式無料",
-      asset: "3D / Live2D候補",
-      sourceLabel: "東北ずん子・ずんだもんPJ",
-      sourceUrl: "https://zunko.jp/",
-      note: "無料の3D/Live2D導線があり、今の main face に向いています。",
-    },
-    live2d: null,
-    fallback: {
-      variant: "portrait-zundamon",
-      eyeLeft: "",
-      eyeRight: "",
-      mouth: "",
-      accent: "#74d44c",
-      mouthColor: "#f6c15b",
-      nameColor: "#74d44c",
-      faceScale: 1.03,
-      skinColor: "#f9f4eb",
-      hairColor: "#67c83f",
-      coatColor: "#eff7d3",
-      shirtColor: "#ffffff",
-      eyeColor: "#4f2c63",
-      glowColor: "rgba(116, 212, 76, 0.24)",
-    },
-    reaction: "その切り方でいいのだ。次へ進むのだ。",
-    scenes: [
-      [
-        { role: "user", content: "このプロジェクト、どんな感じ？" },
-        {
-          role: "assistant",
-          content:
-            "## OshiClaw の狙い\n\n- 公式無料キャラやオリジナルキャラを混ぜて試せる\n- ローカルでは実 LLM、Pages では静的 demo を見せる\n- まずは画像素材や fallback から増やし、あとで Live2D に上げる\n\n気軽に触って、気に入った枠を育てる方針なのだ。",
-        },
-      ],
-      [
-        { role: "user", content: "次に詰めるなら？" },
-        {
-          role: "assistant",
-          content:
-            "次ならこの順なのだ。\n\n1. 公式画像素材を増やす\n2. 実 Live2D モデルを追加する\n3. experimental 枠を分けて管理する\n\n土台を分けておくと増やしやすいのだ。",
-        },
-      ],
-    ],
-  },
-  {
-    id: "takehiro",
-    name: "玄野武宏",
-    role: "兄貴分エンジニア",
-    meta: {
-      group: "公式無料",
-      asset: "MMDモデルあり",
-      sourceLabel: "VirVox Project",
-      sourceUrl: "https://www.virvoxproject.com/%E7%8E%84%E9%87%8E%E6%AD%A6%E5%AE%8F",
-      note: "無料立ち絵と MMD モデルの導線がある男枠。",
-    },
-    live2d: null,
-    fallback: {
-      variant: "portrait-kurose",
-      eyeLeft: "",
-      eyeRight: "",
-      mouth: "",
-      accent: "#4ec2a6",
-      mouthColor: "#9ce6c3",
-      nameColor: "#4ec2a6",
-      faceScale: 1,
-      skinColor: "#e0bc9d",
-      hairColor: "#24353b",
-      coatColor: "#183133",
-      shirtColor: "#e1ece8",
-      eyeColor: "#d7fff5",
-      glowColor: "rgba(78, 194, 166, 0.24)",
-    },
-    reaction: "その見方で合ってる。続けようぜ。",
-    scenes: [
-      [
-        { role: "user", content: "無料3Dモデルがあるキャラってどれがいい？" },
-        {
-          role: "assistant",
-          content:
-            "## 今ならこの順だ\n\n1. ずんだもん\n2. 玄野武宏\n3. 雨晴はう\n\nまずは導線がはっきりしているキャラから前面に出すのが堅い。",
-        },
-      ],
-      [
-        { role: "user", content: "Pages では何を見せる？" },
-        {
-          role: "assistant",
-          content:
-            "無料素材のあるキャラを前に出して、\n\n- 見た目\n- 会話テンポ\n- Live2D と fallback の差\n\nこの 3 つを先に見せるのがいい。",
-        },
-      ],
-    ],
-  },
-  {
-    id: "hau",
-    name: "雨晴はう",
-    role: "やさしい案内役",
-    meta: {
-      group: "公式無料",
-      asset: "3D素材あり",
-      sourceLabel: "Amehare Project",
-      sourceUrl: "https://amehau.com/",
-      note: "公式サイトで立ち絵や 3D モデルなどの素材配布を案内。",
-    },
-    live2d: null,
-    fallback: {
-      variant: "portrait-soft",
-      eyeLeft: "",
-      eyeRight: "",
-      mouth: "",
-      accent: "#ff9d76",
-      mouthColor: "#ffd08a",
-      nameColor: "#ff9d76",
-      faceScale: 1,
-      skinColor: "#f4d3c0",
-      hairColor: "#ffb58e",
-      coatColor: "#fff0dd",
-      shirtColor: "#ffffff",
-      eyeColor: "#915d52",
-      glowColor: "rgba(255, 157, 118, 0.22)",
-    },
-    reaction: "大丈夫だよ。順に見ていこう。",
-    scenes: [
-      [
-        { role: "user", content: "画像だけのキャラでも入れる価値ある？" },
-        {
-          role: "assistant",
-          content:
-            "あるよ。\n\n- まず roster を増やせる\n- 出典や規約を見える化できる\n- Live2D はあとから追加できる\n\n最初から全部モデル化しなくて大丈夫。",
-        },
-      ],
-      [
-        { role: "user", content: "じゃあ次に何する？" },
-        {
-          role: "assistant",
-          content:
-            "まずは Pages の顔を無料素材キャラ中心に整えよう。\nそのあとで、実際に動かす Live2D を増やしていけばいいよ。",
-        },
-      ],
-    ],
-  },
-  {
     id: "mio",
+    mode: "live2d",
     name: "みお",
     role: "実装アシスタント",
     meta: {
-      group: "同梱モデル",
-      asset: "Live2Dデモ",
-      sourceLabel: "OshiClaw bundled model",
+      group: "同梱サンプル",
+      asset: "Live2D 実動作",
+      sourceLabel: "",
       sourceUrl: "",
-      note: "この Pages demo で実際に Live2D が動く確認用キャラ。",
+      note: "GitHub Pages では bundled sample の Live2D だけを同梱しています。",
+    },
+    stage: {
+      title: "bundled sample",
+      body: "この slot だけは repo に同梱した Live2D を実際に動かしています。",
+      chips: ["bundled", "Live2D", "public demo"],
     },
     live2d: {
       modelUrl: "./static/live2d/haru/haru_greeter_t03.model3.json",
       expressions: { idle: "f00", talking: "f03", thinking: "f02" },
       motions: { idle: "Idle", talking: "Tap" },
     },
-    fallback: {
-      eyeLeft: "●",
-      eyeRight: "●",
-      mouth: "ω",
-      accent: "#58a6ff",
-      mouthColor: "#f97583",
-      nameColor: "#58a6ff",
-      faceScale: 1,
-    },
-    reaction: "状況を見よう。実装の当たりを一緒に絞るね。",
+    reaction: "まずは挙動を見るね。必要ならローカル版で深掘りしよう。",
     scenes: [
       [
-        { role: "user", content: "このプロジェクト、どんな感じ？" },
+        { role: "user", content: "GitHub Pages では何を見せてるの？" },
         {
           role: "assistant",
           content:
-            "## いま見せてるところ\n\n- Live2D 表示\n- キャラ切替\n- Markdown 表示\n- 音声とリアクション演出\n\n```bash\npython3 server.py\n```",
+            "## 公開している範囲\n\n- bundled sample の **Live2D 実動作**\n- チャット風 UI と Markdown 表示\n- リアクションと TTS の雰囲気\n\npublic ページには、独自 fallback や再配布条件が読みにくいモデルは置いていません。",
         },
       ],
       [
-        { role: "user", content: "エラー調査っぽい流れも見たい" },
+        { role: "user", content: "Live2D は結局無理だったの？" },
         {
           role: "assistant",
           content:
-            "> まず再現条件を絞るのが近道かも。\n\n1. 失敗する操作を固定\n2. Console / Network を確認\n3. 直近差分を切る\n\n必要ならローカル版で実際に会話しよう。",
+            "無理ではないよ。\n\n1. **技術的には動く**\n2. 問題は **public にそのまま置けるモデルが少ない** こと\n3. だから Pages では bundled sample だけを実体表示にしている\n\n本番で増やすなら、配布条件を確認した公式モデルを個別に入れる形になる。",
+        },
+      ],
+    ],
+  },
+  {
+    id: "zundamon",
+    mode: "candidate",
+    name: "ずんだもん",
+    role: "公式候補",
+    meta: {
+      group: "公式候補",
+      asset: "VTubeStudio / 3D モデル",
+      sourceLabel: "東北ずん子・ずんだもん公式ショップ",
+      sourceUrl: "https://shop.zunko.jp/collections/%E3%83%87%E3%83%BC%E3%82%BF",
+      note: "2026年4月15日時点で公式ショップに VTubeStudio 対応と 3D モデルの配布導線があります。Pages にはモデル本体をミラーしていません。",
+    },
+    stage: {
+      title: "official candidate",
+      body: "公式ショップに無料配布導線がある代表例。public では出典だけ示して、モデル本体の再配布は避けています。",
+      chips: ["official", "¥0", "Live2D候補"],
+    },
+    reaction: "公式導線は強いのだ。ここから個別に確認するのだ。",
+    scenes: [
+      [
+        { role: "user", content: "Pages に足すなら誰が強い？" },
+        {
+          role: "assistant",
+          content:
+            "まずは **ずんだもん** なのだ。\n\n- 公式ガイドラインで Web 利用が明示されている\n- 公式ショップに **VTubeStudio 対応** と **3D モデル** がある\n- ただし Pages ではモデル自体をミラーせず、出典リンクだけを見せるのが安全なのだ。",
+        },
+      ],
+    ],
+  },
+  {
+    id: "tohoku_zunko",
+    mode: "candidate",
+    name: "東北ずん子",
+    role: "公式候補",
+    meta: {
+      group: "公式候補",
+      asset: "VTubeStudio / 3D モデル",
+      sourceLabel: "東北ずん子・ずんだもん公式ショップ",
+      sourceUrl: "https://shop.zunko.jp/collections/%E3%83%87%E3%83%BC%E3%82%BF",
+      note: "2026年4月15日時点で公式ショップに VTubeStudio 対応と 3D モデルの配布導線があります。Pages にはリンクだけを掲載しています。",
+    },
+    stage: {
+      title: "official candidate",
+      body: "ずんだもん系で安定して扱いやすい公式キャラ。ガイドラインと素材導線が揃っています。",
+      chips: ["official", "¥0", "guideline clear"],
+    },
+    reaction: "公式側の導線が見えていれば、あとで組み込む判断がしやすいですわ。",
+    scenes: [
+      [
+        { role: "user", content: "ずんだもん以外の本命は？" },
+        {
+          role: "assistant",
+          content:
+            "**東北ずん子** も強いよ。\n\n- 同じ公式ショップで **VTubeStudio 対応** と **3D モデル** が見つかる\n- ガイドラインも同系列で読みやすい\n- Pages では `候補一覧 + 出典リンク` までに留めるのが堅い",
+        },
+      ],
+    ],
+  },
+  {
+    id: "takehiro",
+    mode: "candidate",
+    name: "玄野武宏",
+    role: "公式候補",
+    meta: {
+      group: "公式候補",
+      asset: "公式立ち絵(無料) / MMD",
+      sourceLabel: "VirVox Project",
+      sourceUrl: "https://www.virvoxproject.com/%E7%8E%84%E9%87%8E%E6%AD%A6%E5%AE%8F",
+      note: "VirVox は公式立ち絵と MMD の配布導線あり。個人のホームページ等で公式イラスト掲載はガイドライン上 OK ですが、Pages では素材をミラーせず案内だけにしています。",
+    },
+    stage: {
+      title: "official candidate",
+      body: "男枠ならここ。無料立ち絵と MMD モデルの導線が明確です。",
+      chips: ["official", "male", "MMD"],
+    },
+    reaction: "素材ページと規約を並べて見れば、かなり判断しやすい。",
+    scenes: [
+      [
+        { role: "user", content: "男キャラなら誰がいい？" },
+        {
+          role: "assistant",
+          content:
+            "**玄野武宏** が第一候補。\n\n- 公式ページに **PSDTool 対応公式立ち絵(無料)**\n- 同じページに **MMD モデル** 導線\n- 個人のブログやホームページへの公式イラスト掲載は、VirVox の具体例で許諾不要と読める\n\nただし public ページでの素材ミラーは避けている。",
+        },
+      ],
+    ],
+  },
+  {
+    id: "hau",
+    mode: "candidate",
+    name: "雨晴はう",
+    role: "公式候補",
+    meta: {
+      group: "公式候補",
+      asset: "公式立ち絵配布",
+      sourceLabel: "Amehare Project",
+      sourceUrl: "https://amehau.com/",
+      note: "公式サイトに公式立ち絵配布導線があります。ただしサイト内コンテンツの無断転載・二次配布は禁止なので、Pages では名前と出典リンクだけにしています。",
+    },
+    stage: {
+      title: "official candidate",
+      body: "素材導線はあるが、サイト画像の転載制限があるタイプ。Pages では案内表示までに留めるのが安全です。",
+      chips: ["official", "image only", "link out"],
+    },
+    reaction: "素材はあるけど、public 側ではリンク止まりが安全だよ。",
+    scenes: [
+      [
+        { role: "user", content: "雨晴はうはどう扱う？" },
+        {
+          role: "assistant",
+          content:
+            "公式サイトに **公式立ち絵 v2.0** の配布導線はあるよ。\n\nでも、サイト全体の利用規約では **画像等の無断転載・二次配布** を禁止している。だから Pages では素材そのものは持たず、`候補` として出典だけ示す形にしている。",
         },
       ],
     ],
@@ -219,59 +188,15 @@ let playbackToken = 0;
 let live2dApp = null;
 let live2dModel = null;
 let voiceEnabled = false;
-let activeUtterance = null;
-
-function getSpeechProfile(characterId) {
-  switch (characterId) {
-    case "zundamon":
-      return { rate: 1.08, pitch: 1.12 };
-    case "takehiro":
-      return { rate: 0.98, pitch: 0.9 };
-    case "hau":
-      return { rate: 1, pitch: 1.08 };
-    default:
-      return { rate: 1.04, pitch: 0.98 };
-  }
-}
-
-function setStatus(state) {
-  charStatusEl.className = state;
-  charStatusEl.textContent = STATUS_LABELS[state] || state;
-  fallbackEl.dataset.state = state;
-  if (live2dModel) {
-    try {
-      if (state === "thinking") {
-        live2dModel.expression(currentCharacter.live2d?.expressions.thinking);
-      } else if (state === "talking") {
-        live2dModel.expression(currentCharacter.live2d?.expressions.talking);
-        live2dModel.motion(currentCharacter.live2d?.motions.talking);
-      } else {
-        live2dModel.expression(currentCharacter.live2d?.expressions.idle);
-        live2dModel.motion(currentCharacter.live2d?.motions.idle);
-      }
-    } catch {
-      // expression / motion may vary per model
-    }
-  }
-
-  if (state === "talking") {
-    characterPanelEl.classList.add("speaking");
-  } else {
-    characterPanelEl.classList.remove("speaking");
-  }
-}
 
 function wait(ms) {
   return new Promise((resolve) => window.setTimeout(resolve, ms));
 }
 
 function stopSpeech() {
-  if (!("speechSynthesis" in window)) {
-    return;
+  if ("speechSynthesis" in window) {
+    window.speechSynthesis.cancel();
   }
-
-  activeUtterance = null;
-  window.speechSynthesis.cancel();
 }
 
 function speak(text) {
@@ -281,17 +206,42 @@ function speak(text) {
 
   stopSpeech();
   const utterance = new SpeechSynthesisUtterance(
-    text
+    String(text)
       .replace(/```[\s\S]*?```/g, "コードがあります。")
       .replace(/`([^`]+)`/g, "$1")
       .replace(/\[([^\]]+)\]\(([^)]+)\)/g, "$1")
   );
   utterance.lang = "ja-JP";
-  const speechProfile = getSpeechProfile(currentCharacter.id);
-  utterance.rate = speechProfile.rate;
-  utterance.pitch = speechProfile.pitch;
-  activeUtterance = utterance;
+  utterance.rate = currentCharacter.mode === "candidate" ? 1 : 1.02;
+  utterance.pitch = currentCharacter.mode === "candidate" ? 0.98 : 1.02;
   window.speechSynthesis.speak(utterance);
+}
+
+function setStatus(state) {
+  charStatusEl.className = state;
+  charStatusEl.textContent = STATUS_LABELS[state] || state;
+
+  if (live2dModel && currentCharacter.mode === "live2d") {
+    try {
+      if (state === "thinking") {
+        live2dModel.expression(currentCharacter.live2d.expressions.thinking);
+      } else if (state === "talking") {
+        live2dModel.expression(currentCharacter.live2d.expressions.talking);
+        live2dModel.motion(currentCharacter.live2d.motions.talking);
+      } else {
+        live2dModel.expression(currentCharacter.live2d.expressions.idle);
+        live2dModel.motion(currentCharacter.live2d.motions.idle);
+      }
+    } catch {
+      // Some models do not expose every expression / motion consistently.
+    }
+  }
+
+  if (state === "talking") {
+    characterPanelEl.classList.add("speaking");
+  } else {
+    characterPanelEl.classList.remove("speaking");
+  }
 }
 
 function appendTextWithLineBreaks(container, text) {
@@ -498,124 +448,31 @@ function showTyping() {
   messagesEl.scrollTop = messagesEl.scrollHeight;
 }
 
-function renderFallbackCharacter() {
-  const { fallback } = currentCharacter;
+function renderCandidatePanel() {
+  const stage = currentCharacter.stage;
   fallbackEl.hidden = false;
-  fallbackEl.dataset.variant = fallback.variant || "simple";
-  fallbackEl.dataset.state = "idle";
-  fallbackEl.innerHTML =
-    fallback.variant === "portrait-kurose"
-      ? `
-        <div class="fb-portrait-shell">
-          <div class="fb-glow"></div>
-          <div class="fb-portrait">
-            <div class="fb-head">
-              <div class="fb-hair-back"></div>
-              <div class="fb-faceplate">
-                <div class="fb-brows">
-                  <span class="fb-brow"></span>
-                  <span class="fb-brow"></span>
-                </div>
-                <div class="fb-eyes">
-                  <span class="fb-eye"></span>
-                  <span class="fb-eye"></span>
-                </div>
-                <div class="fb-mouth"></div>
-              </div>
-              <div class="fb-hair-front"></div>
-            </div>
-            <div class="fb-neck"></div>
-            <div class="fb-body">
-              <div class="fb-shirt"></div>
-              <div class="fb-lapel fb-lapel-left"></div>
-              <div class="fb-lapel fb-lapel-right"></div>
-            </div>
-          </div>
-          <div class="fb-name">${currentCharacter.name}</div>
-        </div>
-      `
-      : fallback.variant === "portrait-soft"
-      ? `
-        <div class="fb-portrait-shell">
-          <div class="fb-glow"></div>
-          <div class="fb-portrait">
-            <div class="fb-head">
-              <div class="fb-hair-back"></div>
-              <div class="fb-faceplate">
-                <div class="fb-brows">
-                  <span class="fb-brow"></span>
-                  <span class="fb-brow"></span>
-                </div>
-                <div class="fb-eyes">
-                  <span class="fb-eye"></span>
-                  <span class="fb-eye"></span>
-                </div>
-                <div class="fb-mouth"></div>
-              </div>
-              <div class="fb-hair-front"></div>
-            </div>
-            <div class="fb-neck"></div>
-            <div class="fb-body">
-              <div class="fb-shirt"></div>
-              <div class="fb-lapel fb-lapel-left"></div>
-              <div class="fb-lapel fb-lapel-right"></div>
-            </div>
-          </div>
-          <div class="fb-name">${currentCharacter.name}</div>
-        </div>
-      `
-      : fallback.variant === "portrait-zundamon"
-      ? `
-        <div class="fb-zunda-shell">
-          <div class="fb-glow"></div>
-          <div class="fb-zunda-portrait">
-            <div class="fb-zunda-head">
-              <div class="fb-zunda-ear fb-zunda-ear-left"></div>
-              <div class="fb-zunda-ear fb-zunda-ear-right"></div>
-              <div class="fb-zunda-hair"></div>
-              <div class="fb-zunda-face">
-                <div class="fb-zunda-brows">
-                  <span class="fb-zunda-brow"></span>
-                  <span class="fb-zunda-brow"></span>
-                </div>
-                <div class="fb-zunda-eyes">
-                  <span class="fb-zunda-eye"></span>
-                  <span class="fb-zunda-eye"></span>
-                </div>
-                <div class="fb-zunda-cheeks">
-                  <span class="fb-zunda-cheek"></span>
-                  <span class="fb-zunda-cheek"></span>
-                </div>
-                <div class="fb-zunda-mouth"></div>
-              </div>
-            </div>
-            <div class="fb-zunda-body">
-              <div class="fb-zunda-collar"></div>
-              <div class="fb-zunda-bib"></div>
-            </div>
-          </div>
-          <div class="fb-name">${currentCharacter.name}</div>
-        </div>
-      `
-      : `
-        <div class="fb-wrap">
-          <div class="fb-face">
-            <div class="fb-eyes">${fallback.eyeLeft}${fallback.eyeRight}</div>
-            <div class="fb-mouth">${fallback.mouth}</div>
-            <div class="fb-name">${currentCharacter.name}</div>
-          </div>
-        </div>
-      `;
-  fallbackEl.style.setProperty("--fb-accent", fallback.accent);
-  fallbackEl.style.setProperty("--fb-mouth-color", fallback.mouthColor);
-  fallbackEl.style.setProperty("--fb-name-color", fallback.nameColor);
-  fallbackEl.style.setProperty("--fb-face-scale", String(fallback.faceScale));
-  fallbackEl.style.setProperty("--fb-skin-color", fallback.skinColor || "#f3d2ba");
-  fallbackEl.style.setProperty("--fb-hair-color", fallback.hairColor || "#1f2430");
-  fallbackEl.style.setProperty("--fb-coat-color", fallback.coatColor || "#101722");
-  fallbackEl.style.setProperty("--fb-shirt-color", fallback.shirtColor || "#d9dee6");
-  fallbackEl.style.setProperty("--fb-eye-color", fallback.eyeColor || "#dfe7f2");
-  fallbackEl.style.setProperty("--fb-glow-color", fallback.glowColor || "rgba(88, 166, 255, 0.2)");
+  fallbackEl.removeAttribute("data-variant");
+  fallbackEl.innerHTML = `
+    <div class="demo-candidate">
+      <span class="demo-candidate-kind">${stage.title}</span>
+      <h3>${currentCharacter.name}</h3>
+      <p>${stage.body}</p>
+      <div class="demo-candidate-chips">
+        ${stage.chips.map((chip) => `<span>${chip}</span>`).join("")}
+      </div>
+    </div>
+  `;
+}
+
+function showUnavailable(message) {
+  fallbackEl.hidden = false;
+  fallbackEl.removeAttribute("data-variant");
+  fallbackEl.innerHTML = `
+    <div class="demo-unavailable">
+      <strong>Live2D unavailable</strong>
+      <p>${message}</p>
+    </div>
+  `;
 }
 
 function layoutLive2D(model) {
@@ -667,11 +524,13 @@ function clearLive2DModel() {
 async function loadCharacterVisual() {
   clearLive2DModel();
   fallbackEl.hidden = true;
+  fallbackEl.innerHTML = "";
   live2dCanvasEl.style.display = "block";
 
-  if (!currentCharacter.live2d) {
+  if (currentCharacter.mode !== "live2d") {
     live2dCanvasEl.style.display = "none";
-    renderFallbackCharacter();
+    renderCandidatePanel();
+    setStatus("idle");
     return;
   }
 
@@ -689,10 +548,11 @@ async function loadCharacterVisual() {
     layoutLive2D(live2dModel);
     setStatus("idle");
   } catch (error) {
-    console.warn("Live2D demo load failed, using fallback:", error);
+    console.warn("Live2D demo load failed:", error);
     clearLive2DModel();
     live2dCanvasEl.style.display = "none";
-    renderFallbackCharacter();
+    showUnavailable("この環境では Live2D を読み込めませんでした。ローカル版なら実機ブラウザで確認しやすいです。");
+    setStatus("idle");
   }
 }
 
@@ -715,7 +575,7 @@ async function playCurrentScene() {
   stopSpeech();
   messagesEl.innerHTML = "";
   setStatus("idle");
-  addMessage("assistant", `こんにちは、${currentCharacter.name} の demo だよ。`);
+  addMessage("assistant", `こんにちは、${currentCharacter.name} の Pages preview です。`);
   await wait(450);
 
   for (const turn of scene) {
@@ -750,13 +610,14 @@ async function playCurrentScene() {
 function applyCharacter(characterId) {
   currentCharacter =
     CHARACTERS.find((character) => character.id === characterId) || CHARACTERS[0];
+  currentSceneIndex = 0;
   charNameEl.textContent = currentCharacter.name;
   charRoleEl.textContent = currentCharacter.role;
-  metaGroupEl.textContent = currentCharacter.meta?.group || "未分類";
-  metaAssetEl.textContent = currentCharacter.meta?.asset || "fallback";
-  metaNoteEl.textContent = currentCharacter.meta?.note || "";
+  metaGroupEl.textContent = currentCharacter.meta.group;
+  metaAssetEl.textContent = currentCharacter.meta.asset;
+  metaNoteEl.textContent = currentCharacter.meta.note;
 
-  if (currentCharacter.meta?.sourceUrl && currentCharacter.meta?.sourceLabel) {
+  if (currentCharacter.meta.sourceUrl && currentCharacter.meta.sourceLabel) {
     metaSourceEl.hidden = false;
     metaSourceEl.href = currentCharacter.meta.sourceUrl;
     metaSourceEl.textContent = currentCharacter.meta.sourceLabel;
@@ -774,7 +635,10 @@ function populateCharacterSelect() {
   const options = CHARACTERS.map((character) => {
     const option = document.createElement("option");
     option.value = character.id;
-    option.textContent = `${character.name} / ${character.role}`;
+    option.textContent =
+      character.mode === "live2d"
+        ? `${character.name} / ${character.role}`
+        : `${character.name} / ${character.role} (link only)`;
     return option;
   });
   characterSelectEl.replaceChildren(...options);
@@ -792,7 +656,6 @@ function toggleVoice() {
 
 async function switchCharacter(characterId) {
   playbackToken += 1;
-  currentSceneIndex = 0;
   applyCharacter(characterId);
   await loadCharacterVisual();
   await playCurrentScene();
@@ -800,7 +663,7 @@ async function switchCharacter(characterId) {
 
 async function init() {
   populateCharacterSelect();
-  applyCharacter("zundamon");
+  applyCharacter("mio");
   await loadCharacterVisual();
   await playCurrentScene();
 }
@@ -814,8 +677,7 @@ replayBtn.addEventListener("click", () => {
 });
 
 nextSceneBtn.addEventListener("click", () => {
-  currentSceneIndex =
-    (currentSceneIndex + 1) % currentCharacter.scenes.length;
+  currentSceneIndex = (currentSceneIndex + 1) % currentCharacter.scenes.length;
   playCurrentScene();
 });
 

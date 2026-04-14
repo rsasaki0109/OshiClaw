@@ -56,21 +56,26 @@ def record_webm(demo_url: str) -> None:
         page = context.new_page()
         page.goto(demo_url, wait_until="networkidle")
 
-        wait_for_text(page, ".char-name", "ずんだもん")
-        wait_for_text(page, "#chat-messages .message.assistant", "OshiClaw の狙い")
+        wait_for_text(page, ".char-name", "みお")
+        wait_for_text(page, "#chat-messages .message.assistant", "公開している範囲")
         page.locator("#character-panel").click()
-        page.wait_for_timeout(1200)
+        page.wait_for_timeout(900)
+
+        page.select_option("#character-select", "zundamon")
+        wait_for_text(page, ".char-name", "ずんだもん")
+        wait_for_text(page, "#chat-messages .message.assistant", "公式ガイドラインで Web 利用が明示されている")
+        page.wait_for_timeout(1000)
 
         page.select_option("#character-select", "takehiro")
         wait_for_text(page, ".char-name", "玄野武宏")
-        wait_for_text(page, "#chat-messages .message.assistant", "今ならこの順だ")
-        page.wait_for_timeout(900)
+        wait_for_text(page, "#chat-messages .message.user", "男キャラなら誰がいい？")
+        wait_for_text(page, "#chat-messages .message.assistant", "PSDTool 対応公式立ち絵")
+        page.wait_for_timeout(1000)
 
         page.select_option("#character-select", "mio")
         wait_for_text(page, ".char-name", "みお")
-        wait_for_text(page, "#chat-messages .message.assistant", "いま見せてるところ")
-        page.locator("#character-panel").click()
-        page.wait_for_timeout(1800)
+        wait_for_text(page, "#chat-messages .message.assistant", "公開している範囲")
+        page.wait_for_timeout(1400)
 
         video = page.video
         context.close()
